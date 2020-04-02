@@ -1,5 +1,5 @@
-﻿using System;
-using MediatR;
+﻿using MediatR;
+using System;
 
 namespace CQRSTest.Domain.Base
 {
@@ -7,6 +7,7 @@ namespace CQRSTest.Domain.Base
     {
         public Guid Id;
         public int Version;
+
         public Event()
         {
             Id = Guid.NewGuid();

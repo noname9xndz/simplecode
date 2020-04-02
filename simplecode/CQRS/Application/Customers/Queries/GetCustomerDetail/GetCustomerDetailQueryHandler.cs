@@ -1,6 +1,6 @@
-using System;
 using CQRSTest.Domain.Customers;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +24,6 @@ namespace CQRSTest.Application.Customers.Queries.GetCustomerDetail
                 Address = model.Address
             };
             return await Task.FromResult(vm);
-            
         }
     }
 }

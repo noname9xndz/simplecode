@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using CQRSTest.Domain.Customers;
+using System.Collections.Generic;
 
 namespace CQRSTest.DataAccess
 {

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using CQRSTest.Domain.Base;
+using MediatR;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using CQRSTest.Domain.Base;
-using MediatR;
 
 namespace CQRSTest.DataAccess
 {
     public interface IEventStore
     {
         void SaveEvents(Guid aggregateId, IEnumerable<Event> events, int expectedVersion);
+
         List<Event> GetEventsForAggregate(Guid aggregateId);
     }
 
@@ -19,7 +20,6 @@ namespace CQRSTest.DataAccess
 
         private struct EventDescriptor
         {
-
             public readonly Event EventData;
             public readonly Guid Id;
             public readonly int Version;

@@ -7,21 +7,22 @@ using System.Reflection;
 
 namespace CQRSTest.Domain.Base
 {
-    class PrivateReflectionDynamicObject : DynamicObject
+    internal class PrivateReflectionDynamicObject : DynamicObject
     {
-
         private static IDictionary<Type, IDictionary<string, IProperty>> _propertiesOnType = new ConcurrentDictionary<Type, IDictionary<string, IProperty>>();
 
         // Simple abstraction to make field and property access consistent
-        interface IProperty
+        private interface IProperty
         {
             string Name { get; }
+
             object GetValue(object obj, object[] index);
+
             void SetValue(object obj, object val, object[] index);
         }
 
         // IProperty implementation over a PropertyInfo
-        class Property : IProperty
+        private class Property : IProperty
         {
             internal PropertyInfo PropertyInfo { get; set; }
 
@@ -45,7 +46,7 @@ namespace CQRSTest.Domain.Base
         }
 
         // IProperty implementation over a FieldInfo
-        class Field : IProperty
+        private class Field : IProperty
         {
             internal FieldInfo FieldInfo { get; set; }
 
@@ -57,7 +58,6 @@ namespace CQRSTest.Domain.Base
                 }
             }
 
-
             object IProperty.GetValue(object obj, object[] index)
             {
                 return FieldInfo.GetValue(obj);
@@ -68,7 +68,6 @@ namespace CQRSTest.Domain.Base
                 FieldInfo.SetValue(obj, val);
             }
         }
-
 
         private object RealObject { get; set; }
         private const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -155,7 +154,6 @@ namespace CQRSTest.Domain.Base
 
         private IProperty GetProperty(string propertyName)
         {
-
             // Get the list of properties and fields for this type
             IDictionary<string, IProperty> typeProperties = GetTypeProperties(RealObject.GetType());
 

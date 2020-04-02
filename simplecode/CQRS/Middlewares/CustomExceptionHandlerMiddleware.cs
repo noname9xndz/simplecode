@@ -40,10 +40,12 @@ namespace CQRSTest.Middlewares
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Failures);
                     break;
+
                 case BadRequestException badRequestException:
                     code = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
                     break;
+
                 case NotFoundException _:
                     code = HttpStatusCode.NotFound;
                     break;

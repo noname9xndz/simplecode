@@ -1,12 +1,12 @@
-﻿using System;
-using CQRSTest.Domain.Customers;
+﻿using CQRSTest.Domain.Customers;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CQRSTest.Application.Customers.Commands.DeleteCustomer
 {
-    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand,bool>
+    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, bool>
     {
         private readonly ICustomerRepository _repository;
 

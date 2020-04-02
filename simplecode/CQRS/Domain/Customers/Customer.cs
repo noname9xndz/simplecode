@@ -3,18 +3,16 @@ using CQRSTest.Application.Customers.Commands.UpdateCustomer;
 using CQRSTest.Domain.Base;
 using CQRSTest.Domain.Customers.Events;
 using System;
-using System.Collections.Generic;
 
 namespace CQRSTest.Domain.Customers
 {
     public class Customer : AggregateRoot
     {
-        public string Name {get; set;}
-        public string Address {get; set;}
+        public string Name { get; set; }
+        public string Address { get; set; }
 
         public Customer()
         {
-
         }
 
         public Customer(string name, string address)

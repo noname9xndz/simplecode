@@ -1,23 +1,25 @@
-﻿using System;
-using CQRSTest.Application.Exceptions;
+﻿using CQRSTest.Application.Exceptions;
 using CQRSTest.DataAccess;
+using System;
 using System.Collections.Generic;
-using CQRSTest.Domain.Base;
-using MediatR;
 
 namespace CQRSTest.Domain.Customers
 {
     public interface ICustomerRepository
     {
         List<Customer> GetAll();
+
         Customer GetById(Guid customerId);
+
         void Add(Customer customer);
+
         void Update(Customer customer);
+
         void Delete(Guid customerId);
 
         void Save(Customer customer, int expectedVersion);
-
     }
+
     public class CustomerRepository : ICustomerRepository
     {
         private readonly IEventStore _eventStore;

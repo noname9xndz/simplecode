@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace CQRSTest.Application.Behaviors
 {

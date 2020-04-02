@@ -2,7 +2,6 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using CQRSTest.Domain.Customers.Events;
 
 namespace CQRSTest.Application.Customers.Commands.CreateCustomer
 {

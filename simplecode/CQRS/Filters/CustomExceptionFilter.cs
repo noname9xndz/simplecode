@@ -1,8 +1,8 @@
-﻿using System;
-using System.Net;
-using CQRSTest.Application.Exceptions;
+﻿using CQRSTest.Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Net;
 
 namespace CQRSTest.Filters
 {

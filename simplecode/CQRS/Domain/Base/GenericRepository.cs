@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CQRSTest.DataAccess;
-
-namespace CQRSTest.Domain.Base
+﻿namespace CQRSTest.Domain.Base
 {
     //public interface IRepository<T> where T : AggregateRoot, new()
     //{

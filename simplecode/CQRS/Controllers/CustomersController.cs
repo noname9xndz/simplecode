@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using CQRSTest.Application.Customers.Commands.CreateCustomer;
 using CQRSTest.Application.Customers.Commands.DeleteCustomer;
 using CQRSTest.Application.Customers.Commands.UpdateCustomer;
@@ -6,6 +5,7 @@ using CQRSTest.Application.Customers.Queries.GetCustomerDetail;
 using CQRSTest.Application.Customers.Queries.GetCustomersList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CQRSTest.Controllers
 {
@@ -58,6 +58,6 @@ namespace CQRSTest.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await _mediator.Send(new DeleteCustomerCommand { Id = id }));
-        }        
+        }
     }
 }

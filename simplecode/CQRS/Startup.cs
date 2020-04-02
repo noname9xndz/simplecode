@@ -1,8 +1,6 @@
-using System.Reflection;
 using CQRSTest.Application.Behaviors;
 using CQRSTest.DataAccess;
 using CQRSTest.Domain.Customers;
-using CQRSTest.Filters;
 using CQRSTest.Middlewares;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -13,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace CQRSTest
 {
@@ -40,7 +39,7 @@ namespace CQRSTest
             // Cấu hình Exception filter trong đó có bao gồm FluentValidation
             //services.AddControllers(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
             services.AddControllers()
-                // Cấu hình FluentValidation
+            // Cấu hình FluentValidation
             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddSwaggerGen(c =>
             {

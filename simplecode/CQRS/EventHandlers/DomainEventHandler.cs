@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using CQRSTest.Domain.Customers.Events;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using CQRSTest.Domain.Customers.Events;
-using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace CQRSTest.EventHandlers
 {
-    public class DomainEventHandler: INotificationHandler<CustomerCreated>
+    public class DomainEventHandler : INotificationHandler<CustomerCreated>
     {
         private readonly ILogger<DomainEventHandler> _logger;
 
