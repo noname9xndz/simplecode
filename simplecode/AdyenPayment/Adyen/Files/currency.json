@@ -1,0 +1,727 @@
+[
+  {
+    "code": "AED",
+    "currentcy": "UAE Dirham",
+    "point": "2"
+  },
+  {
+    "code": "ALL",
+    "currentcy": "Albanian Lek",
+    "point": "2"
+  },
+  {
+    "code": "AMD",
+    "currentcy": "Armenian Dram",
+    "point": "2"
+  },
+  {
+    "code": "ANG",
+    "currentcy": "Antillian Guilder",
+    "point": "2"
+  },
+  {
+    "code": "AOA",
+    "currentcy": "Angolan Kwanza",
+    "point": "2"
+  },
+  {
+    "code": "ARS",
+    "currentcy": "Nuevo Argentine Peso",
+    "point": "2"
+  },
+  {
+    "code": "AUD",
+    "currentcy": "Australian Dollar",
+    "point": "2"
+  },
+  {
+    "code": "AWG",
+    "currentcy": "Aruban Guilder",
+    "point": "2"
+  },
+  {
+    "code": "AZN",
+    "currentcy": "Azerbaijani manat",
+    "point": "2"
+  },
+  {
+    "code": "BAM",
+    "currentcy": "Bosnia and Herzegovina Convertible Marks",
+    "point": "2"
+  },
+  {
+    "code": "BBD",
+    "currentcy": "Barbados Dollar",
+    "point": "2"
+  },
+  {
+    "code": "BDT",
+    "currentcy": "Bangladesh Taka",
+    "point": "2"
+  },
+  {
+    "code": "BGN",
+    "currentcy": "New Bulgarian Lev",
+    "point": "2"
+  },
+  {
+    "code": "BHD",
+    "currentcy": "Bahraini Dinar",
+    "point": "3"
+  },
+  {
+    "code": "BMD",
+    "currentcy": "Bermudian Dollar",
+    "point": "2"
+  },
+  {
+    "code": "BND",
+    "currentcy": "Brunei Dollar",
+    "point": "2"
+  },
+  {
+    "code": "BOB",
+    "currentcy": "Bolivia Boliviano",
+    "point": "2"
+  },
+  {
+    "code": "BRL",
+    "currentcy": "Brazilian Real",
+    "point": "2"
+  },
+  {
+    "code": "BSD",
+    "currentcy": "Bahamian Dollar",
+    "point": "2"
+  },
+  {
+    "code": "BWP",
+    "currentcy": "Botswana Pula",
+    "point": "2"
+  },
+  {
+    "code": "BYN",
+    "currentcy": "New Belarusian Ruble",
+    "point": "2"
+  },
+  {
+    "code": "BZD",
+    "currentcy": "Belize Dollar",
+    "point": "2"
+  },
+  {
+    "code": "CAD",
+    "currentcy": "Canadian Dollar",
+    "point": "2"
+  },
+  {
+    "code": "CHF",
+    "currentcy": "Swiss Franc",
+    "point": "2"
+  },
+  {
+    "code": "CLP",
+    "currentcy": "Chilean Peso",
+    "point": "2"
+  },
+  {
+    "code": "CNY",
+    "currentcy": "Yuan Renminbi",
+    "point": "2"
+  },
+  {
+    "code": "COP",
+    "currentcy": "Colombian Peso",
+    "point": "2"
+  },
+  {
+    "code": "CRC",
+    "currentcy": "Costa Rican Colon",
+    "point": "2"
+  },
+  {
+    "code": "CSD",
+    "currentcy": "Serbian Dinar",
+    "point": "2"
+  },
+  {
+    "code": "CUP",
+    "currentcy": "Cuban Peso",
+    "point": "2"
+  },
+  {
+    "code": "CVE",
+    "currentcy": "Cape Verdi Escudo",
+    "point": "0"
+  },
+  {
+    "code": "CZK",
+    "currentcy": "Czech Koruna",
+    "point": "2"
+  },
+  {
+    "code": "DJF",
+    "currentcy": "Djibouti Franc",
+    "point": "0"
+  },
+  {
+    "code": "DKK",
+    "currentcy": "Danish Krone",
+    "point": "2"
+  },
+  {
+    "code": "DOP",
+    "currentcy": "Dominican Republic Peso",
+    "point": "2"
+  },
+  {
+    "code": "DZD",
+    "currentcy": "Algerian Dinar",
+    "point": "2"
+  },
+  {
+    "code": "EEK",
+    "currentcy": "Estonian Krone",
+    "point": "2"
+  },
+  {
+    "code": "EGP",
+    "currentcy": "Egyptian Pound",
+    "point": "2"
+  },
+  {
+    "code": "ETB",
+    "currentcy": "Ethiopian Birr",
+    "point": "2"
+  },
+  {
+    "code": "EUR",
+    "currentcy": "Euro",
+    "point": "2"
+  },
+  {
+    "code": "FJD",
+    "currentcy": "Fiji Dollar",
+    "point": "2"
+  },
+  {
+    "code": "FKP",
+    "currentcy": "Falkland Islands Pound",
+    "point": "2"
+  },
+  {
+    "code": "GBP",
+    "currentcy": "Pound Sterling",
+    "point": "2"
+  },
+  {
+    "code": "GEL",
+    "currentcy": "Georgian Lari",
+    "point": "2"
+  },
+  {
+    "code": "GHS",
+    "currentcy": "Ghanaian Cedi (3rd)",
+    "point": "2"
+  },
+  {
+    "code": "GIP",
+    "currentcy": "Gibraltar Pound",
+    "point": "2"
+  },
+  {
+    "code": "GMD",
+    "currentcy": "Gambia Delasi",
+    "point": "2"
+  },
+  {
+    "code": "GNF",
+    "currentcy": "Guinea Franc",
+    "point": "0"
+  },
+  {
+    "code": "GTQ",
+    "currentcy": "Guatemala Quetzal",
+    "point": "2"
+  },
+  {
+    "code": "GYD",
+    "currentcy": "Guyanese Dollar",
+    "point": "2"
+  },
+  {
+    "code": "HKD",
+    "currentcy": "Hong Kong Dollar",
+    "point": "2"
+  },
+  {
+    "code": "HNL",
+    "currentcy": "Honduras Lempira",
+    "point": "2"
+  },
+  {
+    "code": "HRK",
+    "currentcy": "Croatia Kuna",
+    "point": "2"
+  },
+  {
+    "code": "HTG",
+    "currentcy": "Haitian Gourde",
+    "point": "2"
+  },
+  {
+    "code": "HUF",
+    "currentcy": "Hungarian Forint",
+    "point": "2"
+  },
+  {
+    "code": "IDR",
+    "currentcy": "Indonesian Rupiah",
+    "point": "0"
+  },
+  {
+    "code": "ILS",
+    "currentcy": "New Israeli Scheqel",
+    "point": "2"
+  },
+  {
+    "code": "INR",
+    "currentcy": "Indian Rupee",
+    "point": "2"
+  },
+  {
+    "code": "IQD",
+    "currentcy": "Iraqi Dinar",
+    "point": "3"
+  },
+  {
+    "code": "ISK",
+    "currentcy": "Iceland Krona",
+    "point": "2"
+  },
+  {
+    "code": "JMD",
+    "currentcy": "Jamaican Dollar",
+    "point": "2"
+  },
+  {
+    "code": "JOD",
+    "currentcy": "Jordanian Dinar",
+    "point": "3"
+  },
+  {
+    "code": "JPY",
+    "currentcy": "Japanese Yen",
+    "point": "0"
+  },
+  {
+    "code": "KES",
+    "currentcy": "Kenyan Shilling",
+    "point": "2"
+  },
+  {
+    "code": "KGS",
+    "currentcy": "Kyrgyzstan Som",
+    "point": "2"
+  },
+  {
+    "code": "KHR",
+    "currentcy": "Cambodia Riel",
+    "point": "2"
+  },
+  {
+    "code": "KMF",
+    "currentcy": "Comoro Franc",
+    "point": "0"
+  },
+  {
+    "code": "KRW",
+    "currentcy": "South-Korean Won",
+    "point": "0"
+  },
+  {
+    "code": "KWD",
+    "currentcy": "Kuwaiti Dinar",
+    "point": "3"
+  },
+  {
+    "code": "KYD",
+    "currentcy": "Cayman Islands Dollar",
+    "point": "2"
+  },
+  {
+    "code": "KZT",
+    "currentcy": "Kazakhstani Tenge",
+    "point": "2"
+  },
+  {
+    "code": "LAK",
+    "currentcy": "Laos Kip",
+    "point": "2"
+  },
+  {
+    "code": "LBP",
+    "currentcy": "Lebanese Pound",
+    "point": "2"
+  },
+  {
+    "code": "LKR",
+    "currentcy": "Sri Lanka Rupee",
+    "point": "2"
+  },
+  {
+    "code": "LTL",
+    "currentcy": "Lithunianian Litas",
+    "point": "2"
+  },
+  {
+    "code": "LVL",
+    "currentcy": "Latvian Lats",
+    "point": "2"
+  },
+  {
+    "code": "LYD",
+    "currentcy": "Libyan Dinar",
+    "point": "3"
+  },
+  {
+    "code": "MAD",
+    "currentcy": "Moroccan Dirham",
+    "point": "2"
+  },
+  {
+    "code": "MDL",
+    "currentcy": "Moldovia Leu",
+    "point": "2"
+  },
+  {
+    "code": "MKD",
+    "currentcy": "Macedonian Denar",
+    "point": "2"
+  },
+  {
+    "code": "MMK",
+    "currentcy": "Myanmar Kyat",
+    "point": "2"
+  },
+  {
+    "code": "MNT",
+    "currentcy": "Mongolia Tugrik",
+    "point": "2"
+  },
+  {
+    "code": "MOP",
+    "currentcy": "Macau Pataca",
+    "point": "2"
+  },
+  {
+    "code": "MRU",
+    "currentcy": "Mauritania Ouguiya",
+    "point": "2"
+  },
+  {
+    "code": "MUR",
+    "currentcy": "Mauritius Rupee",
+    "point": "2"
+  },
+  {
+    "code": "MVR",
+    "currentcy": "Maldives Rufiyaa",
+    "point": "2"
+  },
+  {
+    "code": "MWK",
+    "currentcy": "Malawi Kwacha",
+    "point": "2"
+  },
+  {
+    "code": "MXN",
+    "currentcy": "Mexican Peso",
+    "point": "2"
+  },
+  {
+    "code": "MYR",
+    "currentcy": "Malaysian Ringgit",
+    "point": "2"
+  },
+  {
+    "code": "MZN",
+    "currentcy": "Mozambican Metical",
+    "point": "2"
+  },
+  {
+    "code": "NAD",
+    "currentcy": "Namibian Dollar",
+    "point": "2"
+  },
+  {
+    "code": "NGN",
+    "currentcy": "Nigerian Naira",
+    "point": "2"
+  },
+  {
+    "code": "NIO",
+    "currentcy": "Nicaragua Cordoba Oro",
+    "point": "2"
+  },
+  {
+    "code": "NOK",
+    "currentcy": "Norwegian Krone",
+    "point": "2"
+  },
+  {
+    "code": "NPR",
+    "currentcy": "Nepalese Rupee",
+    "point": "2"
+  },
+  {
+    "code": "NZD",
+    "currentcy": "New Zealand Dollar",
+    "point": "2"
+  },
+  {
+    "code": "OMR",
+    "currentcy": "Rial Omani",
+    "point": "3"
+  },
+  {
+    "code": "PAB",
+    "currentcy": "Panamanian Balboa",
+    "point": "2"
+  },
+  {
+    "code": "PEN",
+    "currentcy": "Peruvian Nuevo Sol",
+    "point": "2"
+  },
+  {
+    "code": "PGK",
+    "currentcy": "New Guinea Kina",
+    "point": "2"
+  },
+  {
+    "code": "PHP",
+    "currentcy": "Philippine Peso",
+    "point": "2"
+  },
+  {
+    "code": "PKR",
+    "currentcy": "Pakistan Rupee",
+    "point": "2"
+  },
+  {
+    "code": "PLN",
+    "currentcy": "New Polish Zloty",
+    "point": "2"
+  },
+  {
+    "code": "PYG",
+    "currentcy": "Paraguay Guarani",
+    "point": "0"
+  },
+  {
+    "code": "QAR",
+    "currentcy": "Qatari Rial",
+    "point": "2"
+  },
+  {
+    "code": "RON",
+    "currentcy": "New Romanian Lei",
+    "point": "2"
+  },
+  {
+    "code": "RSD",
+    "currentcy": "Serbian Dinar",
+    "point": "2"
+  },
+  {
+    "code": "RUB",
+    "currentcy": "Russian Ruble",
+    "point": "2"
+  },
+  {
+    "code": "RWF",
+    "currentcy": "Rwanda Franc",
+    "point": "0"
+  },
+  {
+    "code": "SAR",
+    "currentcy": "Saudi Riyal",
+    "point": "2"
+  },
+  {
+    "code": "SBD",
+    "currentcy": "Solomon Island Dollar",
+    "point": "2"
+  },
+  {
+    "code": "SCR",
+    "currentcy": "Seychelles Rupee",
+    "point": "2"
+  },
+  {
+    "code": "SEK",
+    "currentcy": "Swedish Krone",
+    "point": "2"
+  },
+  {
+    "code": "SGD",
+    "currentcy": "Singapore Dollar",
+    "point": "2"
+  },
+  {
+    "code": "SHP",
+    "currentcy": "St. Helena Pound",
+    "point": "2"
+  },
+  {
+    "code": "SKK",
+    "currentcy": "Slovak Koruna",
+    "point": "2"
+  },
+  {
+    "code": "SLL",
+    "currentcy": "Sierra Leone Leone",
+    "point": "2"
+  },
+  {
+    "code": "SOS",
+    "currentcy": "Somalia Shilling",
+    "point": "2"
+  },
+  {
+    "code": "SRD",
+    "currentcy": "Surinamese dollar",
+    "point": "2"
+  },
+  {
+    "code": "STN",
+    "currentcy": "Sao Tome & Principe Dobra",
+    "point": "2"
+  },
+  {
+    "code": "SVC",
+    "currentcy": "El Salvador Colón",
+    "point": "2"
+  },
+  {
+    "code": "SZL",
+    "currentcy": "Swaziland Lilangeni",
+    "point": "2"
+  },
+  {
+    "code": "THB",
+    "currentcy": "Thai Baht",
+    "point": "2"
+  },
+  {
+    "code": "TND",
+    "currentcy": "Tunisian Dinar",
+    "point": "3"
+  },
+  {
+    "code": "TOP",
+    "currentcy": "Tonga Pa'anga",
+    "point": "2"
+  },
+  {
+    "code": "TRY",
+    "currentcy": "New Turkish Lira",
+    "point": "2"
+  },
+  {
+    "code": "TTD",
+    "currentcy": "Trinidad & Tobago Dollar",
+    "point": "2"
+  },
+  {
+    "code": "TWD",
+    "currentcy": "New Taiwan Dollar",
+    "point": "2"
+  },
+  {
+    "code": "TZS",
+    "currentcy": "Tanzanian Shilling",
+    "point": "2"
+  },
+  {
+    "code": "UAH",
+    "currentcy": "Ukraine Hryvnia",
+    "point": "2"
+  },
+  {
+    "code": "UGX",
+    "currentcy": "Uganda Shilling",
+    "point": "0"
+  },
+  {
+    "code": "USD",
+    "currentcy": "US Dollars",
+    "point": "2"
+  },
+  {
+    "code": "UYU",
+    "currentcy": "Peso Uruguayo",
+    "point": "2"
+  },
+  {
+    "code": "UZS",
+    "currentcy": "Uzbekistani Som",
+    "point": "2"
+  },
+  {
+    "code": "VEF",
+    "currentcy": "Venezuelan Bolívar",
+    "point": "2"
+  },
+  {
+    "code": "VND",
+    "currentcy": "Vietnamese New Dong",
+    "point": "0"
+  },
+  {
+    "code": "VUV",
+    "currentcy": "Vanuatu Vatu",
+    "point": "0"
+  },
+  {
+    "code": "WST",
+    "currentcy": "Samoan Tala",
+    "point": "2"
+  },
+  {
+    "code": "XAF",
+    "currentcy": "CFA Franc BEAC",
+    "point": "0"
+  },
+  {
+    "code": "XCD",
+    "currentcy": "East Carribean Dollar",
+    "point": "2"
+  },
+  {
+    "code": "XOF",
+    "currentcy": "CFA Franc BCEAO",
+    "point": "0"
+  },
+  {
+    "code": "XPF",
+    "currentcy": "CFP Franc",
+    "point": "0"
+  },
+  {
+    "code": "YER",
+    "currentcy": "Yemeni Rial",
+    "point": "2"
+  },
+  {
+    "code": "ZAR",
+    "currentcy": "South African Rand",
+    "point": "2"
+  },
+  {
+    "code": "ZMW",
+    "currentcy": "Zambian Kwacha",
+    "point": "2"
+  },
+]
