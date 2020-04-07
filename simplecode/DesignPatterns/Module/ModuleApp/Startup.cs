@@ -1,23 +1,73 @@
+using System;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.WebEncoders;
+using ModuleApp.Extensions;
+using ModuleApp.Infrastructure.Common;
+using ModuleApp.Infrastructure.Data;
+using ModuleApp.Infrastructure.Modules;
+using ModuleApp.Infrastructure.Web;
+using ModuleApp.Module.Core.Extensions;
 
 namespace ModuleApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
+            GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
+            services.AddModules(_hostingEnvironment.ContentRootPath);
+
+            //            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            //            services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+
+            services.AddScoped<SlugRouteValueTransformer>();
+            services.AddCustomizedMvc(GlobalConfiguration.Modules);
+            //            services.Configure<RazorViewEngineOptions>(
+            //                options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
+            //            services.Configure<WebEncoderOptions>(options =>
+            //            {
+            //                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+            //            });
+            services.AddTransient<IRazorViewRenderer, RazorViewRenderer>();
+            services.AddCloudscribePagination();
+            foreach (var module in GlobalConfiguration.Modules)
+            {
+                var moduleInitializerType = module.Assembly.GetTypes()
+                    .FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
+                if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IModuleInitializer)))
+                {
+                    var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
+                    services.AddSingleton(typeof(IModuleInitializer), moduleInitializer);
+                    moduleInitializer.ConfigureServices(services);
+                }
+            }
+
+//            services.AddScoped<ServiceFactory>(p => p.GetService);
+//            services.AddScoped<IMediator, Mediator>();
+
+
+
+
+
+
             services.AddRazorPages();
         }
 
@@ -27,25 +77,42 @@ namespace ModuleApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+              //  app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseWhen(
+                    context => !context.Request.Path.StartsWithSegments("/api"),
+                    a => a.UseExceptionHandler("/Home/Error")
+                );
                 app.UseHsts();
             }
 
+            app.UseWhen(
+                context => !context.Request.Path.StartsWithSegments("/api"),
+                a => a.UseStatusCodePagesWithReExecute("/Home/ErrorWithCode/{0}")
+            );
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
+            app.UseCustomizedStaticFiles(env);
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapDynamicControllerRoute<SlugRouteValueTransformer>("/{**slug}");
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
+            foreach (var moduleInitializer in moduleInitializers)
+            {
+                moduleInitializer.Configure(app, env);
+            }
         }
     }
 }
