@@ -12,4 +12,9 @@
     <ProjectReference Include="..\..\ModuleApp.Infrastructure\ModuleApp.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\MVC\" />
+  </ItemGroup>
+
 </Project>
