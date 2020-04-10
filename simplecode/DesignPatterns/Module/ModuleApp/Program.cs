@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using ModuleApp.Module.Core.Extensions;
+using System.IO;
 
 namespace ModuleApp
 {
@@ -7,14 +11,27 @@ namespace ModuleApp
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            BuildWebHost(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
+                .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureAppConfiguration(SetupConfiguration);
+                    //webBuilder.ConfigureLogging(SetupLogging);
                 });
+
+        private static void SetupConfiguration(WebHostBuilderContext hostingContext, IConfigurationBuilder configBuilder)
+        {
+            var env = hostingContext.HostingEnvironment;
+            var configuration = configBuilder.Build();
+            configBuilder.AddEntityFrameworkConfig(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+            );
+//            Log.Logger = new LoggerConfiguration()
+//                .ReadFrom.Configuration(configuration)
+//                .CreateLogger();
+        }
     }
 }

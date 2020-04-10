@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ModuleApp.Infrastructure.Data;
 using ModuleApp.Module.Core.Models.MVC;
+using System.Threading.Tasks;
 
 namespace ModuleApp.Module.Core.Extensions
 {

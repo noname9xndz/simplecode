@@ -75,14 +75,14 @@ namespace ModuleApp.Extensions
                     o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
                 })
                 .AddRazorRuntimeCompilation()
-                .AddViewLocalization()
-                .AddModelBindingMessagesLocalizer(services)
-                .AddDataAnnotationsLocalization(o =>
-                {
-                    var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
-                    var L = factory.Create(null);
-                    o.DataAnnotationLocalizerProvider = (t, f) => L;
-                })
+                //.AddViewLocalization()
+               // .AddModelBindingMessagesLocalizer(services)
+                //.AddDataAnnotationsLocalization(o =>
+                //{
+                //    var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
+                //    var L = factory.Create(null);
+                //    o.DataAnnotationLocalizerProvider = (t, f) => L;
+                //})
                 .AddNewtonsoftJson();
 
             foreach (var module in modules.Where(x => !x.IsBundledWithHost))

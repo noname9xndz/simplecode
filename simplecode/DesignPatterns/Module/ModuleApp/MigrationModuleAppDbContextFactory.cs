@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ModuleApp.Extensions;
 using ModuleApp.Infrastructure.Common;
 using ModuleApp.Module.Core.Data;
+using System;
+using System.IO;
+using ModuleApp.Module.Core.Extensions;
 
 namespace ModuleApp
 {
-    
     public class MigrationModuleAppDbContextFactory : IDesignTimeDbContextFactory<ModuleAppDbContext>
     {
         public ModuleAppDbContext CreateDbContext(string[] args)
@@ -39,5 +36,6 @@ namespace ModuleApp
 
             return _serviceProvider.GetRequiredService<ModuleAppDbContext>();
         }
+
     }
 }

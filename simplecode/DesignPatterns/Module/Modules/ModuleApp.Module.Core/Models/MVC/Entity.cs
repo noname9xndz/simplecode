@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ModuleApp.Infrastructure.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using ModuleApp.Infrastructure.Models;
 
 namespace ModuleApp.Module.Core.Models.MVC
 {

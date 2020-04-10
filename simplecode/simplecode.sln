@@ -71,6 +71,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepoAndUoW", "DesignPattern
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire", "Utilities\Hangfire\Hangfire.csproj", "{D1FF3ADE-4083-4318-B191-95A3D42ADF80}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleApp.Module.News", "DesignPatterns\Module\Modules\ModuleApp.Module.News\ModuleApp.Module.News.csproj", "{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +159,10 @@ Global
 		{D1FF3ADE-4083-4318-B191-95A3D42ADF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1FF3ADE-4083-4318-B191-95A3D42ADF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1FF3ADE-4083-4318-B191-95A3D42ADF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,6 +195,7 @@ Global
 		{72194FCE-BEB1-47D0-B48B-53E0B8BDC318} = {BB50CC16-B88F-4BB0-9471-CB39FEC0F89A}
 		{85333FB2-DF1D-4C29-B597-5DE739CA3BC9} = {BB50CC16-B88F-4BB0-9471-CB39FEC0F89A}
 		{D1FF3ADE-4083-4318-B191-95A3D42ADF80} = {A45959F5-0416-4E12-8248-4F24DF770D3F}
+		{B02F1E2B-AB65-4333-A0E9-09ACF9E723B9} = {B924F0DE-196F-4C9C-BD89-2591E148DCDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C03E68F1-34D6-425D-A92A-8092DD1F6245}

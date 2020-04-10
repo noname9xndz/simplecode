@@ -1,20 +1,17 @@
-using System;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.WebEncoders;
 using ModuleApp.Extensions;
 using ModuleApp.Infrastructure.Common;
 using ModuleApp.Infrastructure.Data;
 using ModuleApp.Infrastructure.Modules;
 using ModuleApp.Infrastructure.Web;
+using ModuleApp.Module.Core.Data;
 using ModuleApp.Module.Core.Extensions;
+using System;
+using System.Linq;
 
 namespace ModuleApp
 {
@@ -22,6 +19,7 @@ namespace ModuleApp
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             _configuration = configuration;
@@ -34,9 +32,9 @@ namespace ModuleApp
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
             services.AddModules(_hostingEnvironment.ContentRootPath);
-
-            //            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            //            services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+            services.AddCustomizedDataStore(_configuration);
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
             services.AddScoped<SlugRouteValueTransformer>();
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
@@ -60,24 +58,17 @@ namespace ModuleApp
                 }
             }
 
-//            services.AddScoped<ServiceFactory>(p => p.GetService);
-//            services.AddScoped<IMediator, Mediator>();
+            //            services.AddScoped<ServiceFactory>(p => p.GetService);
+            //            services.AddScoped<IMediator, Mediator>();
 
-
-
-
-
-
-            services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-              //  app.UseDatabaseErrorPage();
+                //  app.UseDatabaseErrorPage();
             }
             else
             {

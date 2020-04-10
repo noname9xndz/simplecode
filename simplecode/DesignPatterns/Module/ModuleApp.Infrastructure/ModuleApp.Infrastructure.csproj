@@ -12,8 +12,10 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
+    <Folder Include="Web\SmartTable\" />
   </ItemGroup>
 
 </Project>
