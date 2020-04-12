@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModuleApp.Module.Core.Extensions;
-using System.IO;
 
 namespace ModuleApp
 {

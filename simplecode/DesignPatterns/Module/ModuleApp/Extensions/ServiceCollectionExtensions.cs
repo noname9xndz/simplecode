@@ -19,6 +19,7 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace ModuleApp.Extensions
 {
@@ -74,6 +75,7 @@ namespace ModuleApp.Extensions
                     o.EnableEndpointRouting = false;
                     o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
                 })
+                
                 .AddRazorRuntimeCompilation()
                 //.AddViewLocalization()
                // .AddModelBindingMessagesLocalizer(services)
@@ -83,14 +85,35 @@ namespace ModuleApp.Extensions
                 //    var L = factory.Create(null);
                 //    o.DataAnnotationLocalizerProvider = (t, f) => L;
                 //})
-                .AddNewtonsoftJson();
+                .AddNewtonsoftJson();///.ConfigureApplicationPartManager(ConfigureApplicationParts);
 
             foreach (var module in modules.Where(x => !x.IsBundledWithHost))
             {
                 AddApplicationPart(mvcBuilder, module.Assembly);
             }
 
+            mvcBuilder.ConfigureApplicationPartManager(ConfigureApplicationParts);
             return services;
+        }
+        private static void ConfigureApplicationParts(ApplicationPartManager apm)
+        {
+            var rootPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+            var assemblyFiles = Directory.GetFiles(rootPath, "ModuleApp.*.dll");
+            foreach (var assemblyFile in assemblyFiles)
+            {
+                try
+                {
+                    var assembly = Assembly.LoadFile(assemblyFile);
+                    if (assemblyFile.EndsWith(assembly.GetType().Namespace + ".Views.dll") || assemblyFile.EndsWith(assembly.GetType().Namespace + ".dll"))
+                        continue;
+                    else if (assemblyFile.EndsWith(".Views.dll"))
+                        apm.ApplicationParts.Add(new CompiledRazorAssemblyPart(assembly));
+                    else
+                        apm.ApplicationParts.Add(new AssemblyPart(assembly));
+                }
+                catch (Exception e) { }
+            }
         }
 
         /// <summary>
@@ -139,6 +162,8 @@ namespace ModuleApp.Extensions
                     mvcBuilder.PartManager.ApplicationParts.Add(part);
                 }
             }
+
+            mvcBuilder.ConfigureApplicationPartManager(ConfigureApplicationParts);
         }
 
         public static IServiceCollection AddCustomizedIdentity(this IServiceCollection services, IConfiguration configuration)

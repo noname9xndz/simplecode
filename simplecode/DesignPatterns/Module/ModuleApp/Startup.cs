@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.WebEncoders;
 using ModuleApp.Extensions;
 using ModuleApp.Infrastructure.Common;
 using ModuleApp.Infrastructure.Data;
@@ -11,7 +13,12 @@ using ModuleApp.Infrastructure.Web;
 using ModuleApp.Module.Core.Data;
 using ModuleApp.Module.Core.Extensions;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace ModuleApp
 {
@@ -38,12 +45,14 @@ namespace ModuleApp
 
             services.AddScoped<SlugRouteValueTransformer>();
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
-            //            services.Configure<RazorViewEngineOptions>(
-            //                options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
-            //            services.Configure<WebEncoderOptions>(options =>
-            //            {
-            //                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
-            //            });
+
+            //Load View In Module
+            services.Configure<RazorViewEngineOptions>(
+                options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
+            services.Configure<WebEncoderOptions>(options =>
+            {
+                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+            });
             services.AddTransient<IRazorViewRenderer, RazorViewRenderer>();
             services.AddCloudscribePagination();
             foreach (var module in GlobalConfiguration.Modules)
@@ -103,6 +112,26 @@ namespace ModuleApp
             foreach (var moduleInitializer in moduleInitializers)
             {
                 moduleInitializer.Configure(app, env);
+            }
+        }
+        private void ConfigureApplicationParts(ApplicationPartManager apm)
+        {
+            var rootPath = _hostingEnvironment.WebRootPath;
+            //var pluginsPath = Path.Combine(rootPath, "Plugins");
+
+            //var assemblyFiles = Directory.GetFiles(pluginsPath, "*.dll", SearchOption.AllDirectories);
+            var assemblyFiles = Directory.GetFiles(rootPath, "*.dll", SearchOption.AllDirectories);
+            foreach (var assemblyFile in assemblyFiles)
+            {
+                try
+                {
+                    var assembly = Assembly.LoadFile(assemblyFile);
+                    if (assemblyFile.EndsWith(".Views.dll"))
+                        apm.ApplicationParts.Add(new CompiledRazorAssemblyPart(assembly));
+                    else
+                        apm.ApplicationParts.Add(new AssemblyPart(assembly));
+                }
+                catch (Exception e) { }
             }
         }
     }
