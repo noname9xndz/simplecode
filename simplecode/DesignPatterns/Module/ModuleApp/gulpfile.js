@@ -46,5 +46,5 @@
 //    });
 
 //    gulp.src(paths.dev.modules + 'SimplCommerce.Module.SampleData/SampleContent/**/*.*')
-//        .pipe(gulp.dest(paths.host.modules + 'SimplCommerce.Module.SampleData/SampleContent'));
+//        .pipe(gulp.dest(paths.host.modules + 'ModuleApp.Module.SampleData/SampleContent'));
 //});

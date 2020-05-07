@@ -14,47 +14,40 @@ namespace ModuleApp.Infrastructure.Web
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            //var module = "Core";
+            
             //context.Values.TryGetValue(THEME_KEY, out string theme);
+            context.Values.TryGetValue(_moduleKey, out string theme);
 
-            //if (!string.IsNullOrWhiteSpace(theme) && !string.Equals(theme, "Generic", System.StringComparison.InvariantCultureIgnoreCase))
-            //{
-            //    //var moduleViewLocations = new string[]
-            //    //{
-            //    //    $"/Themes/{theme}/Areas/{{2}}/Views/{{1}}/{{0}}.cshtml",
-            //    //    $"/Themes/{theme}/Areas/{{2}}/Views/Shared/{{0}}.cshtml",
-            //    //    $"/Themes/{theme}/Views/{{1}}/{{0}}.cshtml",
-            //    //    $"/Themes/{theme}/Views/Shared/{{0}}.cshtml"
-            //    //};
-            //    var moduleViewLocations = new string[]
-            //   {
-            //        $"/Modules/ModuleApp.Module."+module+"/Areas/{{2}}/Views/{{1}}/{{0}}.cshtml",
-            //        $"/Modules/ModuleApp.Module."+module+"/Areas/{{2}}/Views/Shared/{{0}}.cshtml",
-            //        $"/Modules/ModuleApp.Module."+module+"/Views/{{1}}/{{0}}.cshtml",
-            //        $"/Modules/ModuleApp.Module."+module+"/Views/Shared/{{0}}.cshtml"
-            //   };
-
-            //    viewLocations = moduleViewLocations.Concat(viewLocations);
-            //}
-
-            //return viewLocations;
-            var path = Directory.GetCurrentDirectory();
-            if (context.Values.ContainsKey(_moduleKey))
+            if (!string.IsNullOrWhiteSpace(theme) && !string.Equals(theme, "Generic", System.StringComparison.InvariantCultureIgnoreCase))
             {
-                var module = context.Values[_moduleKey];
-                if (!string.IsNullOrWhiteSpace(module))
+                var moduleViewLocations = new string[]
                 {
-                    var moduleViewLocations = new string[]
-                    {
-                       $"/ModuleApp.Module."+module+"/Areas/"+context.AreaName+"/Views/"+context.ControllerName+"/"+context.ViewName+".cshtml",
-                       $"/ModuleApp.Module." + module + "/Views/{1}/{0}.cshtml",
-                       $"/ModuleApp.Modules." + module + "/Views/Shared/{0}.cshtml"
-                    };
-
-                    viewLocations = moduleViewLocations.Concat(viewLocations);
-                }
+                    $"/Themes/{theme}/Areas/{{2}}/Views/{{1}}/{{0}}.cshtml",
+                    $"/Themes/{theme}/Areas/{{2}}/Views/Shared/{{0}}.cshtml",
+                    $"/Themes/{theme}/Views/{{1}}/{{0}}.cshtml",
+                    $"/Themes/{theme}/Views/Shared/{{0}}.cshtml"
+                };
+                viewLocations = moduleViewLocations.Concat(viewLocations);
             }
+
             return viewLocations;
+            //var path = Directory.GetCurrentDirectory();
+            //if (context.Values.ContainsKey(_moduleKey))
+            //{
+            //    var module = context.Values[_moduleKey];
+            //    if (!string.IsNullOrWhiteSpace(module))
+            //    {
+            //        var moduleViewLocations = new string[]
+            //        {
+            //           $"/ModuleApp.Module."+module+"/Areas/"+context.AreaName+"/Views/"+context.ControllerName+"/"+context.ViewName+".cshtml",
+            //           $"/ModuleApp.Module." + module + "/Views/{1}/{0}.cshtml",
+            //           $"/ModuleApp.Modules." + module + "/Views/Shared/{0}.cshtml"
+            //        };
+
+            //        viewLocations = moduleViewLocations.Concat(viewLocations);
+            //    }
+            //}
+            //return viewLocations;
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)
@@ -75,12 +68,31 @@ namespace ModuleApp.Infrastructure.Web
             //    var config = context.ActionContext.HttpContext.RequestServices.GetService<IConfiguration>();
             //    context.Values[THEME_KEY] = config["Theme"];
             //}
-            var controller = context.ActionContext.ActionDescriptor.DisplayName;
-            var moduleName = controller.Split('.')[2];
-            if (moduleName != "ModuleApp")
+
+
+            var controllerName = context.ActionContext.ActionDescriptor.DisplayName;
+            if (controllerName == null) // in case of render view to string
             {
-                context.Values[_moduleKey] = moduleName;
+                return;
             }
+
+            context.ActionContext.HttpContext.Request.Cookies.TryGetValue(_moduleKey, out string previewingTheme);
+            if (!string.IsNullOrWhiteSpace(previewingTheme))
+            {
+                context.Values[_moduleKey] = previewingTheme;
+            }
+            else
+            {
+                var config = context.ActionContext.HttpContext.RequestServices.GetService<IConfiguration>();
+                context.Values[_moduleKey] = config["module"];
+            }
+
+            //var controller = context.ActionContext.ActionDescriptor.DisplayName;
+            //var moduleName = controller.Split('.')[2];
+            //if (moduleName != "ModuleApp")
+            //{
+            //    context.Values[_moduleKey] = moduleName;
+            //}
         }
     }
 }

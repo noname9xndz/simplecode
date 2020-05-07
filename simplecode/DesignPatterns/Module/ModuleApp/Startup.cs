@@ -43,22 +43,23 @@ namespace ModuleApp
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
+            //register dynamic routing and module
             services.AddScoped<SlugRouteValueTransformer>();
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
 
             //Load View In Module
-            services.Configure<RazorViewEngineOptions>(
-                options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
+            services.Configure<RazorViewEngineOptions>(options => { options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander()); });
             services.Configure<WebEncoderOptions>(options =>
             {
                 options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
             });
             services.AddTransient<IRazorViewRenderer, RazorViewRenderer>();
-            services.AddCloudscribePagination();
+            //services.AddCloudscribePagination();
+
+            // create lifecycle  for module
             foreach (var module in GlobalConfiguration.Modules)
             {
-                var moduleInitializerType = module.Assembly.GetTypes()
-                    .FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
+                var moduleInitializerType = module.Assembly.GetTypes().FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
                 if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IModuleInitializer)))
                 {
                     var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
@@ -67,8 +68,8 @@ namespace ModuleApp
                 }
             }
 
-            //            services.AddScoped<ServiceFactory>(p => p.GetService);
-            //            services.AddScoped<IMediator, Mediator>();
+            //services.AddScoped<ServiceFactory>(p => p.GetService);
+            //services.AddScoped<IMediator, Mediator>();
 
         }
 
@@ -112,26 +113,6 @@ namespace ModuleApp
             foreach (var moduleInitializer in moduleInitializers)
             {
                 moduleInitializer.Configure(app, env);
-            }
-        }
-        private void ConfigureApplicationParts(ApplicationPartManager apm)
-        {
-            var rootPath = _hostingEnvironment.WebRootPath;
-            //var pluginsPath = Path.Combine(rootPath, "Plugins");
-
-            //var assemblyFiles = Directory.GetFiles(pluginsPath, "*.dll", SearchOption.AllDirectories);
-            var assemblyFiles = Directory.GetFiles(rootPath, "*.dll", SearchOption.AllDirectories);
-            foreach (var assemblyFile in assemblyFiles)
-            {
-                try
-                {
-                    var assembly = Assembly.LoadFile(assemblyFile);
-                    if (assemblyFile.EndsWith(".Views.dll"))
-                        apm.ApplicationParts.Add(new CompiledRazorAssemblyPart(assembly));
-                    else
-                        apm.ApplicationParts.Add(new AssemblyPart(assembly));
-                }
-                catch (Exception e) { }
             }
         }
     }

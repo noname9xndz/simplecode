@@ -15,7 +15,7 @@
             }
         </div>
     </div>
-    @if (Model.NewsItem.Any())
+    @if (Model.NewsItem != null &&Model.NewsItem.Any())
     {
         <div class="news-category-detail row">
             @foreach (var item in Model.NewsItem)
@@ -35,3 +35,5 @@
                   cs-pagenumber-param="page"></cs-pager>
     </div>
 </div>
+
+this is new module

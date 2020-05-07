@@ -61,17 +61,17 @@ namespace SimplCommerce.Module.News.Areas.News.Controllers
                 offset = (_pageSize * currentPageNum) - _pageSize;
             }
 
-            model.NewsItem = query.Include(x => x.ThumbnailImage).Select(x => new NewsItemThumbnail()
-            {
-                Id = x.Id,
-                ShortContent = x.ShortContent,
-                ImageUrl = _mediaService.GetMediaUrl(x.ThumbnailImage),
-                PublishedOn = x.CreatedOn,
-                Slug = x.Slug
-            })
-            .Skip(offset)
-            .Take(_pageSize)
-            .ToList();
+            //model.NewsItem = query?.Include(x => x.ThumbnailImage)?.Select(x => new NewsItemThumbnail()
+            //{
+            //    Id = x.Id,
+            //    ShortContent = x.ShortContent,
+            //    ImageUrl = _mediaService.GetMediaUrl(x.ThumbnailImage),
+            //    PublishedOn = x.CreatedOn,
+            //    Slug = x.Slug
+            //})?
+            //.Skip(offset)
+            //.Take(_pageSize)
+            //.ToList();
 
             model.PageSize = _pageSize;
             model.Page = currentPageNum;

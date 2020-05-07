@@ -85,35 +85,14 @@ namespace ModuleApp.Extensions
                 //    var L = factory.Create(null);
                 //    o.DataAnnotationLocalizerProvider = (t, f) => L;
                 //})
-                .AddNewtonsoftJson();///.ConfigureApplicationPartManager(ConfigureApplicationParts);
+                .AddNewtonsoftJson();
 
             foreach (var module in modules.Where(x => !x.IsBundledWithHost))
             {
                 AddApplicationPart(mvcBuilder, module.Assembly);
             }
 
-            mvcBuilder.ConfigureApplicationPartManager(ConfigureApplicationParts);
             return services;
-        }
-        private static void ConfigureApplicationParts(ApplicationPartManager apm)
-        {
-            var rootPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
-            var assemblyFiles = Directory.GetFiles(rootPath, "ModuleApp.*.dll");
-            foreach (var assemblyFile in assemblyFiles)
-            {
-                try
-                {
-                    var assembly = Assembly.LoadFile(assemblyFile);
-                    if (assemblyFile.EndsWith(assembly.GetType().Namespace + ".Views.dll") || assemblyFile.EndsWith(assembly.GetType().Namespace + ".dll"))
-                        continue;
-                    else if (assemblyFile.EndsWith(".Views.dll"))
-                        apm.ApplicationParts.Add(new CompiledRazorAssemblyPart(assembly));
-                    else
-                        apm.ApplicationParts.Add(new AssemblyPart(assembly));
-                }
-                catch (Exception e) { }
-            }
         }
 
         /// <summary>
@@ -123,28 +102,33 @@ namespace ModuleApp.Extensions
         /// <param name="mvc"></param>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IMvcBuilder AddModelBindingMessagesLocalizer
-            (this IMvcBuilder mvc, IServiceCollection services)
-        {
-            return mvc.AddMvcOptions(o =>
-            {
-                var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
-                var L = factory.Create(null);
+        //public static IMvcBuilder AddModelBindingMessagesLocalizer
+        //    (this IMvcBuilder mvc, IServiceCollection services)
+        //{
+        //    return mvc.AddMvcOptions(o =>
+        //    {
+        //        var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
+        //        var L = factory.Create(null);
 
-                o.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => L["The value '{0}' is invalid.", x]);
-                o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor((x) => L["The field {0} must be a number.", x]);
-                o.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor((x) => L["A value for the '{0}' property was not provided.", x]);
-                o.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => L["The value '{0}' is not valid for {1}.", x, y]);
-                o.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => L["A value is required."]);
-                o.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => L["A non-empty request body is required."]);
-                o.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor((x) => L["The value '{0}' is not valid.", x]);
-                o.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => L["The value provided is invalid."]);
-                o.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => L["The field must be a number."]);
-                o.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor((x) => L["The supplied value is invalid for {0}.", x]);
-                o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor((x) => L["Null value is invalid."]);
-            });
-        }
+        //        o.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => L["The value '{0}' is invalid.", x]);
+        //        o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor((x) => L["The field {0} must be a number.", x]);
+        //        o.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor((x) => L["A value for the '{0}' property was not provided.", x]);
+        //        o.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => L["The value '{0}' is not valid for {1}.", x, y]);
+        //        o.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => L["A value is required."]);
+        //        o.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => L["A non-empty request body is required."]);
+        //        o.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor((x) => L["The value '{0}' is not valid.", x]);
+        //        o.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => L["The value provided is invalid."]);
+        //        o.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => L["The field must be a number."]);
+        //        o.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor((x) => L["The supplied value is invalid for {0}.", x]);
+        //        o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor((x) => L["Null value is invalid."]);
+        //    });
+        //}
 
+        /// <summary>
+        /// register module in mvc
+        /// </summary>
+        /// <param name="mvcBuilder"></param>
+        /// <param name="assembly"></param>
         private static void AddApplicationPart(IMvcBuilder mvcBuilder, Assembly assembly)
         {
             var partFactory = ApplicationPartFactory.GetApplicationPartFactory(assembly);
@@ -162,8 +146,6 @@ namespace ModuleApp.Extensions
                     mvcBuilder.PartManager.ApplicationParts.Add(part);
                 }
             }
-
-            mvcBuilder.ConfigureApplicationPartManager(ConfigureApplicationParts);
         }
 
         public static IServiceCollection AddCustomizedIdentity(this IServiceCollection services, IConfiguration configuration)
@@ -252,6 +234,12 @@ namespace ModuleApp.Extensions
             return services;
         }
 
+        /// <summary>
+        /// register connection string
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IServiceCollection AddCustomizedDataStore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextPool<ModuleAppDbContext>(options =>
@@ -260,6 +248,11 @@ namespace ModuleApp.Extensions
             return services;
         }
 
+        /// <summary>
+        /// load module type dll
+        /// </summary>
+        /// <param name="moduleFolderPath"></param>
+        /// <param name="module"></param>
         private static void TryLoadModuleAssembly(string moduleFolderPath, ModuleInfo module)
         {
             const string binariesFolderName = "bin";

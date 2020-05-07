@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	</PropertyGroup>
+	<ItemGroup>
     <ProjectReference Include="..\..\ModuleApp.Infrastructure\ModuleApp.Infrastructure.csproj" />
     <ProjectReference Include="..\ModuleApp.Module.Core\ModuleApp.Module.Core.csproj" />
   </ItemGroup>
@@ -15,6 +15,10 @@
     <Folder Include="Areas\News\Views\NewsCategory\" />
     <Folder Include="Areas\News\Views\NewsItem\" />
     <Folder Include="Areas\News\Views\Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
   </ItemGroup>
 
 </Project>
