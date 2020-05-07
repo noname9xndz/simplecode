@@ -1,0 +1,27 @@
+﻿  
+  #register
+  public static void Register(IServiceCollection services, IConfiguration configuration)
+  {
+      services.AddUnitOfWork<NonameDbContext>();  
+  }
+
+  #using
+
+   public class CreateTestCommandHandler : IRequestHandler<CreateTestCommand, bool>
+   {
+       
+        private readonly IUnitOfWork<DbContext> _unitOfWork;
+
+        public CreateTestCommandHandler(IUnitOfWork<DbContext> unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<bool> Handle(CreateTestCommand request, CancellationToken cancellationToken)
+        {
+              var models = _mapper.Map<CreateTestCommand, Models.Models.Test>(request);
+              await _unitOfWork.GetCrudRepository<Models.Models.Test>().AddAsync(data);
+              await _unitOfWork.SaveChangesAsync();
+              return await Task.FromResult(true);
+        }
+   }
