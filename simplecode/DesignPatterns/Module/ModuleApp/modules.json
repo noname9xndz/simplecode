@@ -1,0 +1,10 @@
+[
+  {
+    "id": "ModuleApp.Module.Core",
+    "version": "1.0.0"
+  },
+  {
+    "id": "ModuleApp.Module.News",
+    "version": "1.0.0"
+  }
+]

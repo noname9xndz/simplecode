@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html lang="#">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SimplCommerce</title>
+    @RenderSection("additionalMeta", false)
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <ul class="nav justify-content-end">
+                344344
+            </ul>
+        </div>
+    </div>
+    <div class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 logo">
+                    <a asp-area="Core" asp-controller="Home" asp-action="Index">
+                        <img alt="SimplCommerce" src="~/modules/core/Logo_SimplCommerce.png" />
+                    </a>
+                </div>
+                <div class="col-10 col-md-5 col-lg-7 search-box">
+                    <a asp-area="News" asp-controller="NewsItem" asp-action="NewsHome">
+                        fdfghdffg
+                    </a>
+                </div>
+                <div class="col-2 col-md-1 cart-btn">
+                    33333
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-lg navbar-light bg-light btco-hover-menu main-nav">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                22222
+            </div>
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <div class="container body-content clearfix">
+        @RenderBody()
+    </div>
+
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>22222</h4>
+                    <vc:menu menu-id="1"></vc:menu>
+                </div>
+                <div class="col-md-3">
+                    <h4>22222</h4>
+                    <vc:menu menu-id="2"></vc:menu>
+                </div>
+                <div class="col-md-6">
+                    <h4>SimplCommerce</h4>
+                    <p>The first ecommerce system built on .NET Core.</p>
+                    <p>Simple to use and easy to customize</p>
+                    <p>Cross platform and Open source</p>
+                </div>
+            </div>
+            <hr />
+            <p class="pull-left">&copy; @DateTime.Now.Year - SimplCommerce</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script simpl-append-version="true" src="~/lib/bootstrap4/js/bootstrap.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

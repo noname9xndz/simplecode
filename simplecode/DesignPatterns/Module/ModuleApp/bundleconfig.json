@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/libs.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap4/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/themes/CozaStore/site.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap4/css/bootstrap.css"
+    ]
+  }
+]
