@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ModuleApp.Module.Core.Models.MVC;
-
-namespace ModuleApp.Module.Core.Extensions
+﻿namespace ModuleApp.Module.Core.Extensions
 {
     //public class EFConfigurationDbContext : DbContext
     //{

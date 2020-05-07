@@ -13,12 +13,9 @@ using ModuleApp.Infrastructure.Web;
 using ModuleApp.Module.Core.Data;
 using ModuleApp.Module.Core.Extensions;
 using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace ModuleApp
 {
@@ -70,7 +67,6 @@ namespace ModuleApp
 
             //services.AddScoped<ServiceFactory>(p => p.GetService);
             //services.AddScoped<IMediator, Mediator>();
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

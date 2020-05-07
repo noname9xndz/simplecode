@@ -1,5 +1,4 @@
-﻿
-using ModuleApp.Infrastructure.Models;
+﻿using ModuleApp.Infrastructure.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace ModuleApp.Module.Core.Models.MVC

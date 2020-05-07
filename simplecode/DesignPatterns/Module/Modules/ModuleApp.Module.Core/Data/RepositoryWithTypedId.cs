@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using ModuleApp.Infrastructure.Data;
 using ModuleApp.Infrastructure.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ModuleApp.Module.Core.Data
@@ -42,7 +40,7 @@ namespace ModuleApp.Module.Core.Data
             Context.SaveChanges();
         }
 
-        public  Task SaveChangesAsync()
+        public Task SaveChangesAsync()
         {
             return Context.SaveChangesAsync();
         }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
 using ModuleApp.Infrastructure.Common;
 using ModuleApp.Infrastructure.Modules;
 using ModuleApp.Infrastructure.Web.ModelBinders;
@@ -19,7 +18,6 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting.Internal;
 
 namespace ModuleApp.Extensions
 {
@@ -75,10 +73,10 @@ namespace ModuleApp.Extensions
                     o.EnableEndpointRouting = false;
                     o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
                 })
-                
+
                 .AddRazorRuntimeCompilation()
                 //.AddViewLocalization()
-               // .AddModelBindingMessagesLocalizer(services)
+                // .AddModelBindingMessagesLocalizer(services)
                 //.AddDataAnnotationsLocalization(o =>
                 //{
                 //    var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();

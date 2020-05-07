@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace ModuleApp.Infrastructure.Web
@@ -14,7 +13,6 @@ namespace ModuleApp.Infrastructure.Web
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            
             //context.Values.TryGetValue(THEME_KEY, out string theme);
             context.Values.TryGetValue(_moduleKey, out string theme);
 
@@ -68,7 +66,6 @@ namespace ModuleApp.Infrastructure.Web
             //    var config = context.ActionContext.HttpContext.RequestServices.GetService<IConfiguration>();
             //    context.Values[THEME_KEY] = config["Theme"];
             //}
-
 
             var controllerName = context.ActionContext.ActionDescriptor.DisplayName;
             if (controllerName == null) // in case of render view to string

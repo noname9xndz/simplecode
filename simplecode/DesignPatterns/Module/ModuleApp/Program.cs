@@ -15,7 +15,8 @@ namespace ModuleApp
 
         private static IHostBuilder BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => {
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureAppConfiguration(SetupConfiguration);
                     //webBuilder.ConfigureLogging(SetupLogging);
@@ -28,9 +29,9 @@ namespace ModuleApp
             configBuilder.AddEntityFrameworkConfig(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
-//            Log.Logger = new LoggerConfiguration()
-//                .ReadFrom.Configuration(configuration)
-//                .CreateLogger();
+            //            Log.Logger = new LoggerConfiguration()
+            //                .ReadFrom.Configuration(configuration)
+            //                .CreateLogger();
         }
     }
 }

@@ -6,7 +6,6 @@ using ModuleApp.Infrastructure.Common;
 using ModuleApp.Module.Core.Data;
 using System;
 using System.IO;
-using ModuleApp.Module.Core.Extensions;
 
 namespace ModuleApp
 {
@@ -36,6 +35,5 @@ namespace ModuleApp
 
             return _serviceProvider.GetRequiredService<ModuleAppDbContext>();
         }
-
     }
 }

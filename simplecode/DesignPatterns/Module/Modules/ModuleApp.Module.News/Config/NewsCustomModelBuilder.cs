@@ -17,10 +17,10 @@ namespace ModuleApp.Module.News.Config
                 b.ToTable("News_NewsItemCategory");
             });
 
-//            modelBuilder.Entity<AppSetting>().HasData(
-//                //new AppSetting("News.PageSize") { Module = "News", IsVisibleInCommonSettingPage = true, Value = "10" }
-//              //  new AppSetting() { Module = "News", IsVisibleInCommonSettingPage = true, Value = "10" }
-//            );
+            //            modelBuilder.Entity<AppSetting>().HasData(
+            //                //new AppSetting("News.PageSize") { Module = "News", IsVisibleInCommonSettingPage = true, Value = "10" }
+            //              //  new AppSetting() { Module = "News", IsVisibleInCommonSettingPage = true, Value = "10" }
+            //            );
 
             modelBuilder.Entity<EntityType>().HasData(
                 new EntityType("NewsCategory")

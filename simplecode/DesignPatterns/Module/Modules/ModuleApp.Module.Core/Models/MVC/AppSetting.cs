@@ -1,14 +1,9 @@
-﻿using ModuleApp.Infrastructure.Models;
-using System.ComponentModel.DataAnnotations;
-
-namespace ModuleApp.Module.Core.Models.MVC
+﻿namespace ModuleApp.Module.Core.Models.MVC
 {
     //public class AppSetting : EntityBaseWithTypedId<string>
     //{
-
     //    public AppSetting()
     //    {
-
     //    }
 
     //    public AppSetting(string id)
