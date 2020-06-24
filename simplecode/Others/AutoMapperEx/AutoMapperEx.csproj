@@ -9,10 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Mapper\Profiles\" />
     <Folder Include="Mapper\DTO\" />
     <Folder Include="Mapper\Model\" />
     <Folder Include="Mapper\Shared\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 
