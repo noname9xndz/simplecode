@@ -3,3 +3,4 @@ Use Generic Type Controller and Interface : https://youtu.be/gb-wA2HDSYw
 Authentication with Blazor WebAssembly (Identity Server 4) : https://youtu.be/d5s-7lk_x8Q
 Blazor : SignalR Chatting Example [Real-Time Programming] : https://youtu.be/sHsOJ02sXyY
 Better DI Service Registration with Assembly Scan : https://medium.com/@alm.ozdmr/better-di-service-registration-with-assembly-scan-3e0329e8e30a 
+pattern : https://referbruv.com/blog/posts/exploring-aspnet-core-fundamentals-implementing-the-decorator-pattern?fbclid=IwAR3VzPXR0kDqBmG5lLIyhtHNTmV5jJYsJCkJGaYfhskfBYAybuQ3yjh9qx4
