@@ -75,7 +75,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire", "Utilities\Hangf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericRepository", "Utilities\Noname\GenericRepository.csproj", "{B023266D-D5DE-45F3-8203-7E090D8BFE83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMongoRepository", "DesignPatterns\GenericMongoRepository\GenericMongoRepository.csproj", "{1228D9F9-8F9B-4F10-9A80-F4E40020AE89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericMongoRepository", "DesignPatterns\GenericMongoRepository\GenericMongoRepository.csproj", "{1228D9F9-8F9B-4F10-9A80-F4E40020AE89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutoMapper", "AutoMapper", "{E8F4A1F5-501F-410C-9FFD-B0A589B02AD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperEx", "Others\AutoMapperEx\AutoMapperEx.csproj", "{8A3452BF-30AD-484C-8CA1-6461043F2642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +179,10 @@ Global
 		{1228D9F9-8F9B-4F10-9A80-F4E40020AE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1228D9F9-8F9B-4F10-9A80-F4E40020AE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1228D9F9-8F9B-4F10-9A80-F4E40020AE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A3452BF-30AD-484C-8CA1-6461043F2642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3452BF-30AD-484C-8CA1-6461043F2642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3452BF-30AD-484C-8CA1-6461043F2642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3452BF-30AD-484C-8CA1-6461043F2642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,6 +218,8 @@ Global
 		{8F97C2CE-5236-4E0E-8758-60606A730661} = {A45959F5-0416-4E12-8248-4F24DF770D3F}
 		{B023266D-D5DE-45F3-8203-7E090D8BFE83} = {A45959F5-0416-4E12-8248-4F24DF770D3F}
 		{1228D9F9-8F9B-4F10-9A80-F4E40020AE89} = {BB50CC16-B88F-4BB0-9471-CB39FEC0F89A}
+		{E8F4A1F5-501F-410C-9FFD-B0A589B02AD8} = {177C6FE6-470A-4BB6-8C7C-3E2F8777D589}
+		{8A3452BF-30AD-484C-8CA1-6461043F2642} = {E8F4A1F5-501F-410C-9FFD-B0A589B02AD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C03E68F1-34D6-425D-A92A-8092DD1F6245}
