@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="py-3 text-center">
+        <h2>Product's List</h2>
+        <p class="lead">A CRUD made with ASP.NET Core, Bootstrap and gRPC</p>
+    </div>
+
+    <button type="button" class="btn redgate" data-toggle="modal" data-target="#productModal" onclick="clearStuff();">New Product</button><br /><br />
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Brand
+                </th>
+                <th>
+                    Value
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="productModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Product</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="ProductId">ID</label>
+                        <input type="text" class="form-control" id="ProductID" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Amount">Amount</label>
+                        <input type="number" class="form-control" id="Amount" placeholder="Amount" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Brand">Brand</label>
+                        <input type="text" class="form-control" id="Brand" placeholder="Brand" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Value">Value</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="Value" placeholder="Value" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn redgate" id="btnAddProduct" onclick="return AddProduct();">Add</button>
+                <button type="button" class="btn redgate" id="btnUpdateProduct" style="display:none;" onclick="UpdateProduct();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
