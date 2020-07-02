@@ -1,0 +1,26 @@
+// mapping/dynamic/templates.asciidoc:227
+
+////
+IMPORTANT NOTE
+==============
+This file is generated from method Line227 in https://github.com/elastic/elasticsearch-net/tree/master/src/Examples/Examples/Mapping/Dynamic/TemplatesPage.cs#L213-L244.
+If you wish to submit a PR to change this example, please change the source method above
+and run dotnet run -- asciidoc in the ExamplesGenerator project directory.
+////
+
+[source, csharp]
+----
+var indexResponse = client.Index<object>(new
+{
+    name = new
+    {
+        first = "Paul",
+        last = "McCartney",
+        title = new
+        {
+            value = "Sir",
+            category = "order of chivalry"
+        }
+    }
+}, i => i.Index("my_index").Id(2));
+----
