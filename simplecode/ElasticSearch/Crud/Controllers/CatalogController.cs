@@ -29,7 +29,7 @@ namespace ElasticSearchCrud.Controllers
             int pageSize = 50;
             var query = await _esFactory.ESFactory().SearchAsync<Catalog>(s => s
                 .Index("catalogs")
-                .From(page)
+                .From((page - 1) * pageSize)
                 .Size(pageSize)
                 .Query(q => q.Match(m => m.Field(f => f.Name).Query(name))));
             var totalRecord = query.HitsMetadata.Total.Value;
