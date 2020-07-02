@@ -4,7 +4,6 @@ using ProductElasticSearchAdvanced.Models;
 using ProductElasticSearchAdvanced.Services;
 using System.Linq;
 using System.Threading.Tasks;
-using ProductElasticSearchAdvanced.Models;
 
 namespace ProductElasticSearchAdvanced.Controllers
 {

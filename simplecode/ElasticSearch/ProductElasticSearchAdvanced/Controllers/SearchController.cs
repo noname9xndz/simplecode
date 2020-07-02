@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nest;
-using ProductElasticSearchAdvanced;
 using ProductElasticSearchAdvanced.Models;
 using ProductElasticSearchAdvanced.Services;
 
