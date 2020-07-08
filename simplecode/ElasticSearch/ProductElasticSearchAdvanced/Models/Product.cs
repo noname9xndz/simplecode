@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ProductElasticSearchAdvanced.Models;
 
 namespace ProductElasticSearchAdvanced.Models
 {
