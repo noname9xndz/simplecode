@@ -1,25 +1,41 @@
 ﻿using ProductElasticSearchAdvanced.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProductElasticSearchAdvanced.Settings;
 
 namespace ProductElasticSearchAdvanced.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<Product>> GetProducts(int count, int skip = 0);
+        Task<IEnumerable<Product>> GetProductsCache(int count, int skip = 0);
+
+        Task<Product> GetProductByIdCache(int id);
+
+        Task<IEnumerable<Product>> GetProductsByCategoryCache(string category);
+
+        Task<IEnumerable<Product>> GetProductsByBrandCache(string category);
+
+        Task<IEnumerable<Product>> GetAllProducts(int count, int skip = 0);
 
         Task<Product> GetProductById(int id);
 
-        Task<IEnumerable<Product>> GetProductsByCategory(string category);
-
-        Task<IEnumerable<Product>> GetProductsByBrand(string category);
-
         Task DeleteAsync(Product product);
 
-        Task SaveSingleAsync(Product product);
+        Task<int> SaveSingleAsync(Product product);
 
-        Task SaveManyAsync(Product[] products);
+        Task<int> SaveManyAsync(Product[] products);
 
-        Task SaveBulkAsync(Product[] products);
+        Task<int> SaveBulkAsync(Product[] products);
+
+        Task<IReadOnlyCollection<Product>> FindProducts(string keyword, int page = 1, int pageSize = 5);
+
+        Task<Dictionary<string, object>> GetAggregationsProduct(string query);
+
+        Task<int> ReIndexProduct();
+
+        Task<int> GenerateProducts(int count);
+
+        Task<string> GetProductIndex();
+        Task<ProductSettings> GetProductSetting();
     }
 }

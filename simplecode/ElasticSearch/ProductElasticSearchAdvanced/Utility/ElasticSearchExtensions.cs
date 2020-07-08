@@ -14,8 +14,7 @@ namespace ProductElasticSearchAdvanced.Utility
             var url = configuration["elasticsearch:url"];
             var defaultIndex = configuration["elasticsearch:index"];
 
-            var settings = new ConnectionSettings(new Uri(url))
-                .DefaultIndex(defaultIndex);
+            var settings = new ConnectionSettings(new Uri(url)).DefaultIndex(defaultIndex);
 
             AddDefaultMappings(settings);
 

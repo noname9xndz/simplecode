@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using ProductElasticSearchAdvanced.Services;
-using ProductElasticSearchAdvanced.Services;
+using ProductElasticSearchAdvanced.Settings;
 using ProductElasticSearchAdvanced.Utility;
 
 namespace ProductElasticSearchAdvanced
@@ -28,7 +28,7 @@ namespace ProductElasticSearchAdvanced
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddSingleton<IProductService, ElasticSearchProductService>();
+            services.AddSingleton<IProductService, ProductService>();
             services.Configure<ProductSettings>(Configuration.GetSection("product"));
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
