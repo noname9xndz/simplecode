@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>6bfcd721-5cb0-4bd2-9861-55dfd63f66cb</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include=".vs\RedisExample\config\" />
+    <Folder Include=".vs\RedisExample\DesignTimeBuild\" />
+    <Folder Include=".vs\RedisExample\v16\" />
+    <Folder Include="RedisConfiguration\Base\" />
+    <Folder Include="RedisConfiguration\bin\Debug\netcoreapp1.1\" />
+    <Folder Include="RedisConfiguration\bin\Debug\netcoreapp3.1\" />
+    <Folder Include="RedisConfiguration\obj\Debug\netcoreapp1.1\" />
+    <Folder Include="RedisConfiguration\obj\Debug\netcoreapp3.1\" />
+    <Folder Include="RedisConfiguration\Service\" />
+    <Folder Include="RedisExample\bin\Debug\netcoreapp1.1\Properties\" />
+    <Folder Include="RedisExample\bin\Debug\netcoreapp3.1\Properties\" />
+    <Folder Include="RedisExample\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\" />
+    <Folder Include="RedisExample\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\" />
+    <Folder Include="RedisExample\Controllers\" />
+    <Folder Include="RedisExample\Models\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp1.1\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp3.1\Razor\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp3.1\Razor\Views\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp3.1\Razor\Views\Home\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp3.1\Razor\Views\Shared\" />
+    <Folder Include="RedisExample\obj\Debug\netcoreapp3.1\staticwebassets\" />
+    <Folder Include="RedisExample\Properties\" />
+    <Folder Include="RedisExample\Views\" />
+    <Folder Include="RedisExample\Views\Home\" />
+    <Folder Include="RedisExample\Views\Shared\" />
+    <Folder Include="RedisExample\wwwroot\css\" />
+    <Folder Include="RedisExample\wwwroot\images\" />
+    <Folder Include="RedisExample\wwwroot\js\" />
+    <Folder Include="RedisExample\wwwroot\lib\bootstrap\" />
+    <Folder Include="RedisExample\wwwroot\lib\bootstrap\dist\" />
+    <Folder Include="RedisExample\wwwroot\lib\bootstrap\dist\css\" />
+    <Folder Include="RedisExample\wwwroot\lib\bootstrap\dist\fonts\" />
+    <Folder Include="RedisExample\wwwroot\lib\bootstrap\dist\js\" />
+    <Folder Include="RedisExample\wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="RedisExample\wwwroot\lib\jquery-validation\" />
+    <Folder Include="RedisExample\wwwroot\lib\jquery-validation\dist\" />
+    <Folder Include="RedisExample\wwwroot\lib\jquery\" />
+    <Folder Include="RedisExample\wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+
+</Project>
