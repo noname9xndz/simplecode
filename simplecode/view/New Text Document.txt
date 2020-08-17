@@ -4,3 +4,145 @@ Authentication with Blazor WebAssembly (Identity Server 4) : https://youtu.be/d5
 Blazor : SignalR Chatting Example [Real-Time Programming] : https://youtu.be/sHsOJ02sXyY
 Better DI Service Registration with Assembly Scan : https://medium.com/@alm.ozdmr/better-di-service-registration-with-assembly-scan-3e0329e8e30a 
 pattern : https://referbruv.com/blog/posts/exploring-aspnet-core-fundamentals-implementing-the-decorator-pattern?fbclid=IwAR3VzPXR0kDqBmG5lLIyhtHNTmV5jJYsJCkJGaYfhskfBYAybuQ3yjh9qx4
+
+test authen api 
+
+Get :  http://127.0.0.1:9200/catalogs/_search?pretty
+Post : localhost:9200/catalogs/_doc/1?pretty 
+raw
+{
+ "id": "1",
+ "name":"Car",
+ "description": "Car description"
+}
+localhost:9200/catalogs/_doc/1?pretty
+GET /bookdb_index/book/_search?q=guide
+GET /bookdb_index/book/_search
+GET /bookdb_index/book/_search?q=title:in action
+POST /bookdb_index/book/_search
+https://viblo.asia/p/elasticsearch-example-queries-part-01-gAm5yqVA5db
+https://www.humankode.com/asp-net-core/logging-with-elasticsearch-kibana-asp-net-core-and-docker
+https://hassantariqblog.wordpress.com/category/back-end-stuff/elastic-search/
+https://www.blexin.com/en-US/Posts?tag=ElasticSearch
+
+
+https://api.stg.cyclecarriage.com/auth/sf_callback?code=aPrxuJ9v0jBYw_VNFzR81US3MBfaAagCX9wljECCG8Ux2T.VlOdMZNTMFyccXWeg7VcE8bOVyw%3D%3D&sfdc_community_url=https%3A%2F%2Fpartcopy-digitalmvp-digmvpuat-devjcc.cs5.force.com%2Fendusers&sfdc_community_id=0DBp0000000CaTwGAK
+
+Cuong
+Cuongnx@smartosc.com
+
+$.post('/api/cxa/SSO/Login', 
+{
+	"accessToken":"00DO00000055kIT!AQgAQH49KA0dSvK5g0ljxm45IwEZP3tFB7atpeDiXGWAJigC3iE3C6mjQv6NRzNig2ta.uatrlWuXObHJjf7eGbMi3p0zBun",
+	"key":"bimat",
+	"viewport":"mobileapp"
+	}
+)
+edwen.kerk@trackasia.sg
+Jccl1234
+https://api.stg.cyclecarriage.com/auth/sf_authorize?redirect_uri=zzzzz	
+
+
+
+$.post('/api/cxa/order/submitorder', {SubmitOrderRequest: {
+ContactInformation: {
+FirstName: "Wee Teck James",
+LastName: "Tan",
+Mobile: "87654321",
+Email: "cuong.nguyenxuan83@gmail.com",
+UserId: null,
+
+},
+OrderShippingReferenceType: "1",
+PaymentOption: "CC",
+BillingAddress: {
+PostalCode : "9872",
+StreetName: "800A",
+UnitNumber: "405",
+BuildingName: "A11",
+Country: "SG",
+},
+DeliveryAddress: {
+PostalCode : "9872",
+StreetName: "800A",
+UnitNumber: "405",
+RecipientName: "LonDon",
+BuildingName: "A11",
+Country: "SG",
+},
+ShippingMethods: [
+{
+ShippingMethodName: "Collection",
+AppointmentDate: "12/06/2025",
+AppointmentTime: "11:00am",
+AppointmentBookingID:316428,
+AppointmentFranchiseCode:"K",
+AppointmentAddress: "Alexandra Service Centre 241 Alexandra Road Singapore 159931",
+AppointmentBookingStatus:"Pending"
+}
+],
+}
+})
+
+[
+{
+"transactionId": "pq15a13f",
+"transactionStatus": "settled",
+"transactionType": "credit",
+"refundedTransactionId": "fa63qk6x",
+"invoiceNo": "Entity-Order-194935daada64c3c9a36e2a111006cae",
+"customerId": "91454726",
+"department": "",
+"transactionDate": "27-07-2020 11:55:31",
+"amount": 18.14,
+"taxAmount": 1.19,
+"discountAmount": null,
+"user": "braintree.cnc",
+"siteName": null
+},
+{
+"transactionId": "knf81pyt",
+"transactionStatus": "settled",
+"transactionType": "credit",
+"refundedTransactionId": "1w8ye9j3",
+"invoiceNo": "Entity-Order-a65ae78c84174ec7bd87b8b3bd19dba1",
+"customerId": "S331YHZAB",
+"department": "",
+"transactionDate": "27-07-2020 14:16:56",
+"amount": 321.00,
+"taxAmount": 21.00,
+"discountAmount": null,
+"user": "candice.chong@cyclecarriage.com.sg",
+"siteName": null
+},
+{
+"transactionId": "azhq9j9s",
+"transactionStatus": "settled",
+"transactionType": "credit",
+"refundedTransactionId": "fqtzaecb",
+"invoiceNo": "Entity-Order-9d9f53dfd4ce415e96dd995e44718db3",
+"customerId": "AAAAAA111",
+"department": "",
+"transactionDate": "22-07-2020 03:12:26",
+"amount": 128.40,
+"taxAmount": 8.40,
+"discountAmount": null,
+"user": "braintree.cnc",
+"siteName": null
+},
+{
+"transactionId": "r636h21n",
+"transactionStatus": "settled",
+"transactionType": "credit",
+"refundedTransactionId": "562xkk6s",
+"invoiceNo": "Entity-Order-6d30f2a7e681404cadb488b06314b479",
+"customerId": "074D08061963",
+"department": "",
+"transactionDate": "16-07-2020 07:47:17",
+"amount": 32.10,
+"taxAmount": 2.10,
+"discountAmount": null,
+"user": "braintree.cnc",
+"siteName": null
+}
+]
