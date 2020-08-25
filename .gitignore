@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+simplecode/TestPr/DDD/clean-architecture-manga-master/tools/.store/dotnet-reportgenerator-globaltool/4.4.0/dotnet-reportgenerator-globaltool/4.4.0/tools/netcoreapp3.0/any/Microsoft.Extensions.Configuration.FileExtensions.dll
+simplecode/TestPr/DDD/clean-architecture-manga-master/tools/.store/dotnet-reportgenerator-globaltool/4.4.0/dotnet-reportgenerator-globaltool/4.4.0/tools/netcoreapp2.1/any/Microsoft.Extensions.Configuration.FileExtensions.dll
