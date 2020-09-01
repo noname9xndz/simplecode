@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Equinox.Application.EventSourcedNormalizers;
+using Equinox.Application.EventSourcedNormalizers.Customer;
 using Equinox.Application.ViewModels;
 using FluentValidation.Results;
 

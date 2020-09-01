@@ -1,6 +1,8 @@
 ﻿using Equinox.Application.Interfaces;
 using Equinox.Application.Services;
 using Equinox.Domain.Commands;
+using Equinox.Domain.Commands.Customer;
+using Equinox.Domain.Commands.Product;
 using Equinox.Domain.Core.Events;
 using Equinox.Domain.Events;
 using Equinox.Domain.Interfaces;
@@ -13,6 +15,9 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Equinox.Domain.Core.Core.Mediator;
+using Equinox.Domain.Events.Customer;
+using Equinox.Domain.Events.Product;
+using RegisterNewProductCommand = Equinox.Domain.Commands.Product.RegisterNewProductCommand;
 
 namespace Equinox.Infra.CrossCutting.IoC
 {
@@ -25,19 +30,29 @@ namespace Equinox.Infra.CrossCutting.IoC
 
             // Application
             services.AddScoped<ICustomerAppService, CustomerAppService>();
+            services.AddScoped<IProductAppService, ProductAppService>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
             services.AddScoped<INotificationHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
             services.AddScoped<INotificationHandler<CustomerRemovedEvent>, CustomerEventHandler>();
 
+            services.AddScoped<INotificationHandler<ProductRegisteredEvent>, ProductEventHandler>();
+            services.AddScoped<INotificationHandler<ProductUpdatedEvent>, ProductEventHandler>();
+            services.AddScoped<INotificationHandler<ProductRemovedEvent>, ProductEventHandler>();
+
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewCustomerCommand, ValidationResult>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCustomerCommand, ValidationResult>, CustomerCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveCustomerCommand, ValidationResult>, CustomerCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewProductCommand, ValidationResult>, ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateProductCommand, ValidationResult>, ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveProductCommand, ValidationResult>, ProductCommandHandler>();
+
             // Infra - Data
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<EquinoxContext>();
 
             // Infra - Data EventSourcing

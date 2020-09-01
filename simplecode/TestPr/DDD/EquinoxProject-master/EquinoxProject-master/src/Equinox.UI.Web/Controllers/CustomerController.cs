@@ -18,14 +18,14 @@ namespace Equinox.UI.Web.Controllers
             _customerAppService = customerAppService;
         }
         [AllowAnonymous]
-        [HttpGet("customer-management/list-all")]
+        [HttpGet("customer/list-all")]
         public async Task<IActionResult> Index()
         {
             return View(await _customerAppService.GetAll());
         }
 
         [AllowAnonymous]
-        [HttpGet("customer-management/customer-details/{id:guid}")]
+        [HttpGet("customer/customer-details/{id:guid}")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
@@ -38,14 +38,14 @@ namespace Equinox.UI.Web.Controllers
         }
 
         //[CustomAuthorize("Customers", "Write")]
-        [HttpGet("customer-management/register-new")]
+        [HttpGet("customer/register-new")]
         public IActionResult Create()
         {
             return View();
         }
 
         //[CustomAuthorize("Customers", "Write")]
-        [HttpPost("customer-management/register-new")]
+        [HttpPost("customer/register-new")]
         public async Task<IActionResult> Create(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid) return View(customerViewModel);
@@ -59,7 +59,7 @@ namespace Equinox.UI.Web.Controllers
         }
 
         //[CustomAuthorize("Customers", "Write")]
-        [HttpGet("customer-management/edit-customer/{id:guid}")]
+        [HttpGet("customer/edit-customer/{id:guid}")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) return NotFound();
@@ -72,7 +72,7 @@ namespace Equinox.UI.Web.Controllers
         }
 
        // [CustomAuthorize("Customers", "Write")]
-        [HttpPost("customer-management/edit-customer/{id:guid}")]
+        [HttpPost("customer/edit-customer/{id:guid}")]
         public async Task<IActionResult> Edit(CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid) return View(customerViewModel);
@@ -86,7 +86,7 @@ namespace Equinox.UI.Web.Controllers
         }
 
         //[CustomAuthorize("Customers", "Remove")]
-        [HttpGet("customer-management/remove-customer/{id:guid}")]
+        [HttpGet("customer/remove-customer/{id:guid}")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null) return NotFound();
@@ -99,7 +99,7 @@ namespace Equinox.UI.Web.Controllers
         }
 
         //[CustomAuthorize("Customers", "Remove")]
-        [HttpPost("customer-management/remove-customer/{id:guid}"), ActionName("Delete")]
+        [HttpPost("customer/remove-customer/{id:guid}"), ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (ResponseHasErrors(await _customerAppService.Remove(id)))
@@ -110,7 +110,7 @@ namespace Equinox.UI.Web.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("customer-management/customer-history/{id:guid}")]
+        [HttpGet("customer/customer-history/{id:guid}")]
         public async Task<JsonResult> History(Guid id)
         {
             var customerHistoryData = await _customerAppService.GetAllHistory(id);

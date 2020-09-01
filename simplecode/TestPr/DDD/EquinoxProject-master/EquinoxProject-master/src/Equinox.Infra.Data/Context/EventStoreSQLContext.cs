@@ -1,5 +1,5 @@
 ﻿using Equinox.Domain.Core.Events;
-using Equinox.Infra.Data.Mappings;
+using Equinox.Infra.Data.Mappings.ModelsMap;
 using Microsoft.EntityFrameworkCore;
 
 
