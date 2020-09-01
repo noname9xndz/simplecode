@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Equinox.Infra.Data.Context
 {
     //update-database -Context EquinoxContext
+    //Add-Migration addproduct -Context EquinoxContext
     public sealed class EquinoxContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;
@@ -24,6 +25,7 @@ namespace Equinox.Infra.Data.Context
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,8 +36,8 @@ namespace Equinox.Infra.Data.Context
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
 
-            modelBuilder.ApplyConfiguration(new CustomerMap());
-                        
+            RegisterMapping.Map(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
         }
 

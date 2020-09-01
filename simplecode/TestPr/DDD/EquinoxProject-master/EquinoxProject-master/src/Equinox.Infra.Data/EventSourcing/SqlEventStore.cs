@@ -27,7 +27,7 @@ namespace Equinox.Infra.Data.EventSourcing
             var storedEvent = new StoredEvent(
                 theEvent,
                 serializedData,
-                string.IsNullOrWhiteSpace(_user.Name) ? _user.GetUserEmail()  : "Anonymous");
+                !string.IsNullOrWhiteSpace(_user.Name) ? _user.GetUserEmail()  : "Anonymous");
 
             _eventStoreRepository.Store(storedEvent);
         }
