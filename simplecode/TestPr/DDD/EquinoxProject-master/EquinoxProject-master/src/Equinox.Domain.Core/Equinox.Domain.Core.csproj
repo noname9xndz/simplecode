@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Data\" />
+    <Folder Include="Core\Domain\" />
+    <Folder Include="Core\Mediator\" />
+    <Folder Include="Core\Messaging\" />
+    <Folder Include="Core\Specification\Validation\" />
+    <Folder Include="Core\Utilities\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+  </ItemGroup>
+
+</Project>
