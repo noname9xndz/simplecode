@@ -17,23 +17,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 - CrossCutting", "{554CAF06-5BF7-49E4-A507-002BAD928CEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.UI.Web", "src\Equinox.UI.Web\Equinox.UI.Web.csproj", "{CC21316A-B83C-4F11-846D-01C9DB64C812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.UI.Web", "src\Equinox.UI.Web\Equinox.UI.Web.csproj", "{CC21316A-B83C-4F11-846D-01C9DB64C812}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Services.Api", "src\Equinox.Services.Api\Equinox.Services.Api.csproj", "{38B73B74-F039-4826-80B7-94773287E64D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{A3BCC6A4-608E-4D01-90A7-0061A1E4580E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain", "src\Equinox.Domain\Equinox.Domain.csproj", "{A3BCC6A4-608E-4D01-90A7-0061A1E4580E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Application", "src\Equinox.Application\Equinox.Application.csproj", "{A36A3A66-C03F-4B28-AD70-61AEF85A3049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{1083DDDD-FD97-435D-8483-CBB859EF9EAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Domain.Core", "src\Equinox.Domain.Core\Equinox.Domain.Core.csproj", "{1083DDDD-FD97-435D-8483-CBB859EF9EAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.csproj", "{3FD11320-171A-49E7-B55E-9CC48124EA2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.Data", "src\Equinox.Infra.Data\Equinox.Infra.Data.csproj", "{3FD11320-171A-49E7-B55E-9CC48124EA2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{8BB8CDD1-F39F-47BC-90E3-442737CFC537}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Bus", "src\Equinox.Infra.CrossCutting.Bus\Equinox.Infra.CrossCutting.Bus.csproj", "{8BB8CDD1-F39F-47BC-90E3-442737CFC537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj", "{2FBAA3BA-1BE2-45A3-AF2F-6732F21B7A29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.Identity", "src\Equinox.Infra.CrossCutting.Identity\Equinox.Infra.CrossCutting.Identity.csproj", "{2FBAA3BA-1BE2-45A3-AF2F-6732F21B7A29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj", "{05728901-DAE2-48AB-91B4-E95CA51C754D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equinox.Infra.CrossCutting.IoC", "src\Equinox.Infra.CrossCutting.IoC\Equinox.Infra.CrossCutting.IoC.csproj", "{05728901-DAE2-48AB-91B4-E95CA51C754D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,4 +98,3 @@ Global
 		SolutionGuid = {EA4494CB-C2E9-4618-9E01-F8073BC388C7}
 	EndGlobalSection
 EndGlobal
-

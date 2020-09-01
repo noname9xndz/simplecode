@@ -1,7 +1,7 @@
-﻿using Equinox.Domain.Core.Events;
+﻿using Equinox.Domain.Core.Core.Messaging;
+using Equinox.Domain.Core.Events;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using NetDevPack.Identity.User;
-using NetDevPack.Messaging;
 using Newtonsoft.Json;
 
 
@@ -27,7 +27,7 @@ namespace Equinox.Infra.Data.EventSourcing
             var storedEvent = new StoredEvent(
                 theEvent,
                 serializedData,
-                _user.Name ?? _user.GetUserEmail());
+                string.IsNullOrWhiteSpace(_user.Name) ? _user.GetUserEmail()  : "Anonymous");
 
             _eventStoreRepository.Store(storedEvent);
         }

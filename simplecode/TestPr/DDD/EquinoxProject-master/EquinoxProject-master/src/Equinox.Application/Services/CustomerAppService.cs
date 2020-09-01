@@ -6,10 +6,10 @@ using Equinox.Application.EventSourcedNormalizers;
 using Equinox.Application.Interfaces;
 using Equinox.Application.ViewModels;
 using Equinox.Domain.Commands;
+using Equinox.Domain.Core.Core.Mediator;
 using Equinox.Domain.Interfaces;
 using Equinox.Infra.Data.Repository.EventSourcing;
 using FluentValidation.Results;
-using NetDevPack.Mediator;
 
 namespace Equinox.Application.Services
 {

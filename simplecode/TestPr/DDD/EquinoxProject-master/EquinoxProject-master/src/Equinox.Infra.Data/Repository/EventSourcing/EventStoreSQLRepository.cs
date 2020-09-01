@@ -19,7 +19,8 @@ namespace Equinox.Infra.Data.Repository.EventSourcing
 
         public async Task<IList<StoredEvent>> All(Guid aggregateId)
         {
-            return await (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToListAsync();
+            return await _context.StoredEvent.Where(e => e.AggregateId == aggregateId).ToListAsync();
+            //return await (from e in _context.StoredEvent where e.AggregateId == aggregateId select e).ToListAsync();
         }
 
         public void Store(StoredEvent theEvent)

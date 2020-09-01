@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Equinox.Domain.Core.Core.Mediator;
+using Equinox.Domain.Core.Core.Messaging;
 using Equinox.Domain.Core.Events;
 using FluentValidation.Results;
 using MediatR;
-using NetDevPack.Mediator;
-using NetDevPack.Messaging;
 
 namespace Equinox.Infra.CrossCutting.Bus
 {

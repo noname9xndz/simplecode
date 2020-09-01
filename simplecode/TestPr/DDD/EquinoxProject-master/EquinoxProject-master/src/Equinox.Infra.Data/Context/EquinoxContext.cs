@@ -1,16 +1,17 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Equinox.Domain.Core.Core.Data;
+using Equinox.Domain.Core.Core.Domain;
+using Equinox.Domain.Core.Core.Mediator;
+using Equinox.Domain.Core.Core.Messaging;
 using Equinox.Domain.Models;
 using Equinox.Infra.Data.Mappings;
 using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
-using NetDevPack.Data;
-using NetDevPack.Domain;
-using NetDevPack.Mediator;
-using NetDevPack.Messaging;
 
 namespace Equinox.Infra.Data.Context
 {
+    //update-database -Context EquinoxContext
     public sealed class EquinoxContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediatorHandler;

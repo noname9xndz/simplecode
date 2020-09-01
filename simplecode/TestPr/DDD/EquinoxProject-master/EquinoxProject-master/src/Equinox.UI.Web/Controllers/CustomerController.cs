@@ -8,7 +8,7 @@ using NetDevPack.Identity.Authorization;
 
 namespace Equinox.UI.Web.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class CustomerController : BaseController
     {
         private readonly ICustomerAppService _customerAppService;
@@ -37,14 +37,14 @@ namespace Equinox.UI.Web.Controllers
             return View(customerViewModel);
         }
 
-        [CustomAuthorize("Customers", "Write")]
+        //[CustomAuthorize("Customers", "Write")]
         [HttpGet("customer-management/register-new")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [CustomAuthorize("Customers", "Write")]
+        //[CustomAuthorize("Customers", "Write")]
         [HttpPost("customer-management/register-new")]
         public async Task<IActionResult> Create(CustomerViewModel customerViewModel)
         {
@@ -58,7 +58,7 @@ namespace Equinox.UI.Web.Controllers
             return View(customerViewModel);
         }
 
-        [CustomAuthorize("Customers", "Write")]
+        //[CustomAuthorize("Customers", "Write")]
         [HttpGet("customer-management/edit-customer/{id:guid}")]
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -71,7 +71,7 @@ namespace Equinox.UI.Web.Controllers
             return View(customerViewModel);
         }
 
-        [CustomAuthorize("Customers", "Write")]
+       // [CustomAuthorize("Customers", "Write")]
         [HttpPost("customer-management/edit-customer/{id:guid}")]
         public async Task<IActionResult> Edit(CustomerViewModel customerViewModel)
         {
@@ -85,7 +85,7 @@ namespace Equinox.UI.Web.Controllers
             return View(customerViewModel);
         }
 
-        [CustomAuthorize("Customers", "Remove")]
+        //[CustomAuthorize("Customers", "Remove")]
         [HttpGet("customer-management/remove-customer/{id:guid}")]
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -98,7 +98,7 @@ namespace Equinox.UI.Web.Controllers
             return View(customerViewModel);
         }
 
-        [CustomAuthorize("Customers", "Remove")]
+        //[CustomAuthorize("Customers", "Remove")]
         [HttpPost("customer-management/remove-customer/{id:guid}"), ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {

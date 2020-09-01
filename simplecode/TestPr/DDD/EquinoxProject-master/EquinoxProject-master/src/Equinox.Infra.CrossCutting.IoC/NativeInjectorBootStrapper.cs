@@ -12,7 +12,7 @@ using Equinox.Infra.Data.Repository.EventSourcing;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using NetDevPack.Mediator;
+using Equinox.Domain.Core.Core.Mediator;
 
 namespace Equinox.Infra.CrossCutting.IoC
 {

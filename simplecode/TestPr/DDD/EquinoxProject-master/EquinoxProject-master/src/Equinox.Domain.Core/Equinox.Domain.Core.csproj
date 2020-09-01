@@ -5,11 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NetDevPack" Version="1.0.4" />
+    <Folder Include="Core\Data\" />
+    <Folder Include="Core\Domain\" />
+    <Folder Include="Core\Mediator\" />
+    <Folder Include="Core\Messaging\" />
+    <Folder Include="Core\Specification\Validation\" />
+    <Folder Include="Core\Utilities\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 ﻿using System;
-using NetDevPack.Messaging;
+using Equinox.Domain.Core.Core.Messaging;
 
 namespace Equinox.Domain.Events
 {

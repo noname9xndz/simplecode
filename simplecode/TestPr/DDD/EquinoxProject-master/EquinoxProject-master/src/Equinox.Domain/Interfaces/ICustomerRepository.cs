@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Equinox.Domain.Core.Core.Data;
 using Equinox.Domain.Models;
-using NetDevPack.Data;
 
 namespace Equinox.Domain.Interfaces
 {

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Equinox.Infra.Data.Context
 {
+    //update-database -Context EventStoreSqlContext
     public class EventStoreSqlContext : DbContext
     {
         public EventStoreSqlContext(DbContextOptions<EventStoreSqlContext> options) : base(options) { }
