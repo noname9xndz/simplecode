@@ -1,0 +1,77 @@
+# docker-compose -f docker-compose.base.yml -f docker-compose.base.override.yml -f docker-compose.yml -f docker-compose.override.yml up -d
+
+version: "3.7"
+
+services:
+  web:
+    ports:
+      - 31999:31999
+
+  access-control-api:
+    ports:
+      - 31888:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  webapi-gateway:
+    ports:
+      - 31666:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  product-catalog-api:
+    ports:
+      - 5002
+      - 15002
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  shopping-cart-api:
+    ports:
+      - 5003
+      - 15003
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  inventory-api:
+    ports:
+      - 5004
+      - 15004
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  search-api:
+    ports:
+      - 5010
+      - 15010
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    volumes:
+      - "localnuget:/root/.nuget/packages"
+
+  migration-data:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__shoppingcart=Data Source=sqlserver,1433;Initial Catalog=ShoppingCartDb;User Id=sa;Password=P@ssw0rd;MultipleActiveResultSets=True;
+      - ConnectionStrings__productcatalog=Data Source=sqlserver,1433;Initial Catalog=ProductCatalogDb;User Id=sa;Password=P@ssw0rd;MultipleActiveResultSets=True;
+      - ConnectionStrings__inventory=Data Source=sqlserver,1433;Initial Catalog=InventoryDb;User Id=sa;Password=P@ssw0rd;MultipleActiveResultSets=True;
+      - ConnectionStrings__search=http://elasticsearch:9200
+
+# only if you want to mount nuget packages path to save restore packages time on Windows
+volumes:
+  localnuget:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${LOCAL_NUGET_PATH}

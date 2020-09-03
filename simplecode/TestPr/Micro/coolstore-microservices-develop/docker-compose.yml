@@ -1,0 +1,106 @@
+version: "3.7"
+
+services:
+  web:
+    image: vndg/web-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/web/Dockerfile
+    depends_on:
+      - webapi-gateway
+      - product-catalog-api
+      - shopping-cart-api
+      - inventory-api
+      - search-api
+    networks:
+      - coolstore
+
+  access-control-api:
+    image: vndg/access-control-api-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/microservices/access-control-service/VND.CoolStore.AccessControl/Dockerfile
+    networks:
+      - coolstore
+
+  webapi-gateway:
+    image: vndg/webapi-gateway-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/gateways/webapi-gateway/Dockerfile
+    depends_on:
+      - product-catalog-api
+      - shopping-cart-api
+      - inventory-api
+    networks:
+      - coolstore
+
+  product-catalog-api:
+    image: vndg/product-catalog-api-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/microservices/product-catalog-service/VND.CoolStore.ProductCatalog.Api/Dockerfile
+    depends_on:
+      - migration-data
+      - sqlserver
+      - redis
+    networks:
+      - coolstore
+
+  shopping-cart-api:
+    image: vndg/shopping-cart-api-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/microservices/shopping-cart-service/VND.CoolStore.ShoppingCart.Api/Dockerfile
+    depends_on:
+      - migration-data
+      - sqlserver
+      - redis
+    networks:
+      - coolstore
+
+  inventory-api:
+    image: vndg/inventory-api-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/microservices/inventory-service/VND.CoolStore.Inventory.Api/Dockerfile
+    depends_on:
+      - migration-data
+      - sqlserver
+    networks:
+      - coolstore
+
+  search-api:
+    image: vndg/search-api-v3:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: src/microservices/search-service/VND.CoolStore.Search.Api/Dockerfile
+    depends_on:
+      - migration-data
+      - elasticsearch
+    networks:
+      - coolstore
+
+  migration-data:
+    image: vndg/migration-data-v3:latest
+    build:
+      context: .
+      dockerfile: ./src/migrations/VND.CoolStore.DbMigration/Dockerfile
+    depends_on:
+      - sqlserver
+      - elasticsearch
+      - redis
+      - seq
+    networks:
+      - coolstore
+
+networks:
+  coolstore:
+    name: coolstore-network

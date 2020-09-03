@@ -1,0 +1,338 @@
+---
+# product-catalog service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-catalog-api-v1
+  namespace: coolstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-catalog-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: product-catalog-api
+        version: v1
+    spec:
+      containers:
+        - name: product-catalog-api
+          image: vndg/product-catalog-api-v3:latest
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: JwtAuthn__Authority
+            value: http://access-control-api:31888
+          ports:
+            - containerPort: 5002
+              name: http
+            - containerPort: 15002
+              name: grpc
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5002
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-catalog-api
+  namespace: coolstore
+  labels:
+    app: product-catalog-api
+spec:
+  type: ClusterIP
+  selector:
+    app: product-catalog-api
+  ports:
+    - port: 5002
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 15002
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
+---
+# shopping-cart-api service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-cart-api-v1
+  namespace: coolstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopping-cart-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: shopping-cart-api
+        version: v1
+    spec:
+      containers:
+        - name: shopping-cart-api
+          image: vndg/shopping-cart-api-v3:latest
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: JwtAuthn__Authority
+            value: http://access-control-api:31888
+          ports:
+            - containerPort: 5003
+              name: http
+            - containerPort: 15003
+              name: grpc
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5003
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopping-cart-api
+  namespace: coolstore
+  labels:
+    app: shopping-cart-api
+spec:
+  type: ClusterIP
+  selector:
+    app: shopping-cart-api
+  ports:
+    - port: 5003
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 15003
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
+---
+# inventory service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-api-v1
+  namespace: coolstore
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventory-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: inventory-api
+        version: v1
+    spec:
+      containers:
+        - name: inventory-api
+          image: vndg/inventory-api-v3:latest
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: JwtAuthn__Authority
+            value: http://access-control-api:31888
+          ports:
+            - containerPort: 5004
+              name: http
+            - containerPort: 15004
+              name: grpc
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 5004
+          #   initialDelaySeconds: 3
+          #   periodSeconds: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-api
+  namespace: coolstore
+  labels:
+    app: inventory-api
+spec:
+  type: ClusterIP
+  selector:
+    app: inventory-api
+  ports:
+    - port: 5004
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 15004
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
+---
+# webapi gateway
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi-gateway-v1
+  namespace: coolstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapi-gateway
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: webapi-gateway
+        version: v1
+    spec:
+      containers:
+        - name: webapi-gateway
+          image: vndg/webapi-gateway-v3:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapi-gateway
+  namespace: coolstore
+  labels:
+    app: webapi-gateway
+spec:
+  type: LoadBalancer
+  selector:
+    app: webapi-gateway
+  ports:
+    - port: 31666
+      nodePort: 31666
+      targetPort: http
+      protocol: TCP
+      name: http
+---
+# identity server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: access-control-api-v1
+  namespace: coolstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: access-control-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: access-control-api
+        version: v1
+    spec:
+      containers:
+        - name: access-control-api
+          image: vndg/access-control-api-v3:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: access-control-api
+  namespace: coolstore
+  labels:
+    app: access-control-api
+spec:
+  type: LoadBalancer
+  selector:
+    app: access-control-api
+  ports:
+    - port: 31888
+      nodePort: 31888
+      targetPort: http
+      protocol: TCP
+      name: http
+---
+# web
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-v1
+  namespace: coolstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: web
+        version: v1
+    spec:
+      containers:
+        - name: web
+          image: vndg/web-v3:latest
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: PORT
+            value: "31999"
+          - name: REACT_APP_AUTHORITY
+            value: http://access-control-api:31888
+          - name: REACT_APP_API
+            value: http://webapi-gateway:31666
+          ports:
+            - containerPort: 31999
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: coolstore
+  labels:
+    app: web
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - port: 31999
+      nodePort: 31999
+      targetPort: http
+      protocol: TCP
+      name: http
+---
