@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Catalog.Infrastructure.Context
 {
+    // Add-Migration InitialCreate -Context CatalogDbContext
+    // Update-Database -Context CatalogDbContext
     public class CatalogDbContext : DbContext
     {
         public CatalogDbContext(DbContextOptions<CatalogDbContext> options) : base(options)
@@ -32,7 +34,7 @@ namespace Catalog.Infrastructure.Context
         public CatalogDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CatalogDbContext>()
-                .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
+                .UseSqlServer("Server=DESKTOP-NKFQK11;Database=TestMicro.CatalogDb;User Id = sa;Password = noname9xnd;MultipleActiveResultSets=true");
 
             return new CatalogDbContext(optionsBuilder.Options);
         }

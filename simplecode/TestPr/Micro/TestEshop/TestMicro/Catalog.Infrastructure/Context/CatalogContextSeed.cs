@@ -17,6 +17,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Polly.Retry;
 using Polly;
+using TestMicro.Infrastructure.Extensions;
 
 namespace Catalog.Infrastructure.Context
 {
@@ -392,7 +393,7 @@ namespace Catalog.Infrastructure.Context
 
         private AsyncRetryPolicy CreatePolicy(ILogger<CatalogContextSeed> logger, string prefix, int retries = 3)
         {
-            return Policy.Handle<SqlException>().
+            return Policy.Handle<Microsoft.Data.SqlClient.SqlException>().
                 WaitAndRetryAsync(
                     retryCount: retries,
                     sleepDurationProvider: retry => TimeSpan.FromSeconds(5),

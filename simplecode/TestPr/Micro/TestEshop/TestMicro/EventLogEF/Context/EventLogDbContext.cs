@@ -1,9 +1,12 @@
 ﻿using EventLogEF.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EventLogEF.Context
 {
+    // Add-Migration Initial_EventLogDbContext -Context EventLogDbContext
+    // Update-Database -Context EventLogDbContext
     public class EventLogDbContext : DbContext
     {
         public EventLogDbContext(DbContextOptions<EventLogDbContext> options) : base(options)
