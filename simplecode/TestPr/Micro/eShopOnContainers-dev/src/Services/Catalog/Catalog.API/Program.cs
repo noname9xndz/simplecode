@@ -37,7 +37,8 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API
 
                 Log.Information("Applying migrations ({ApplicationContext})...", AppName);
                 host.MigrateDbContext<CatalogContext>((context, services) =>
-                {
+                    {
+                        var te = services.GetService<IWebHostEnvironment>();
                     var env = services.GetService<IWebHostEnvironment>();
                     var settings = services.GetService<IOptions<CatalogSettings>>();
                     var logger = services.GetService<ILogger<CatalogContextSeed>>();

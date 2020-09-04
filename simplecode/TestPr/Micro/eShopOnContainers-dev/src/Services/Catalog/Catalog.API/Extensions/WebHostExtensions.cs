@@ -18,7 +18,8 @@ namespace Catalog.API.Extensions
             return orchestratorType?.ToUpper() == "K8S";
         }
 
-        public static IWebHost MigrateDbContext<TContext>(this IWebHost host, Action<TContext, IServiceProvider> seeder) where TContext : DbContext
+        public static IWebHost MigrateDbContext<TContext>(this IWebHost host,
+            Action<TContext, IServiceProvider> seeder) where TContext : DbContext
         {
             var underK8s = host.IsInKubernetes();
 
