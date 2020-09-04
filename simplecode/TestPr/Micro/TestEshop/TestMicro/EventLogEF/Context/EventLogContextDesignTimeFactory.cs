@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventLogEF.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Catalog.Infrastructure.Context
+namespace EventLogEF.Context
 {
     public class EventLogContextDesignTimeFactory : IDesignTimeDbContextFactory<EventLogDbContext>
     {

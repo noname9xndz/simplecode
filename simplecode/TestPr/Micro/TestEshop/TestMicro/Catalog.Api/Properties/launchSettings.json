@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65435",
+      "applicationUrl": "http://localhost:57424",
       "sslPort": 44379
     }
   },
@@ -12,19 +12,30 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ConnectionString": "Server=DESKTOP-QRPI657;Database=TestMicro.CatalogDb;;User Id = sa;Password = noname9xnd;MultipleActiveResultSets=true",
+        "Serilog:LogstashgUrl": "http://locahost:8080",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EventBusConnection": "localhost",
+        "Serilog:SeqServerUrl": "http://locahost:5340"
       }
     },
     "Catalog.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:55101",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces",
+      "launchBrowser": true,
+      "resourceGroup": "edu-devspaces3",
+      "aksName": "edu-devspaces3",
+      "subscriptionId": "e3035ac1-c06c-4daf-8939-57b3c5f1f759"
     }
   }
 }

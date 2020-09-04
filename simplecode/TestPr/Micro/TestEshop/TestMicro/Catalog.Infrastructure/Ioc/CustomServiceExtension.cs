@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using Autofac;
 using Catalog.Infrastructure.Context;
+using Catalog.Infrastructure.Events.Services;
 using Catalog.Infrastructure.Filters;
 using Catalog.Infrastructure.Models.Base;
 using Event.Bus.Services.Azure;
@@ -79,14 +80,14 @@ namespace Catalog.Infrastructure.Ioc
                     name: "CatalogDB-check",
                     tags: new string[] { "catalogdb" });
 
-            if (!string.IsNullOrEmpty(accountName) && !string.IsNullOrEmpty(accountKey))
-            {
+            //if (!string.IsNullOrEmpty(accountName) && !string.IsNullOrEmpty(accountKey))
+            //{
                 //                hcBuilder
                 //                    .AddAzureBlobStorage(
                 //                        $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net",
                 //                        name: "catalog-storage-check",
                 //                        tags: new string[] { "catalogstorage" });
-            }
+            //}
 
             if (configuration.GetValue<bool>("AzureServiceBusEnabled"))
             {
@@ -110,9 +111,6 @@ namespace Catalog.Infrastructure.Ioc
 
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-           // var typeName = Assembly.GetAssembly(typeof(CatalogStartUp)).GetName().Name;
-            //var test23 = typeof(CatalogStartUp).GetTypeInfo().Assembly.GetName().Name;
-           // var type = typeof(CatalogStartUp).Assembly.ExportedTypes;
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<CatalogDbContext>(options =>
                 {
@@ -179,12 +177,12 @@ namespace Catalog.Infrastructure.Ioc
 
         }
 
-        public static IServiceCollection AddIntegrationServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<Func<DbConnection, IEventLogEFService>>(
                 sp => (DbConnection c) => new EventLogEFService(c));
 
-            // services.AddTransient<ICatalogIntegrationEventService, CatalogIntegrationEventService>();
+            services.AddTransient<ICatalogEventService, CatalogEventService>();
 
             if (configuration.GetValue<bool>("AzureServiceBusEnabled"))
             {

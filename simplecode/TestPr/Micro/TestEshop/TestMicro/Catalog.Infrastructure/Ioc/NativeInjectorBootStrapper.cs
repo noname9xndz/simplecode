@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Catalog.Infrastructure.Context;
+using Catalog.Infrastructure.Extensions;
 using Catalog.Infrastructure.Models.Base;
 using Event.Bus.Services.Base.Interface;
+using EventLogEF.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace Catalog.Infrastructure.Ioc
 {
@@ -23,13 +28,25 @@ namespace Catalog.Infrastructure.Ioc
                 .AddCustomMVC(configuration)
                 .AddCustomDbContext(configuration)
                 .AddCustomOptions(configuration)
-                //.AddIntegrationServices(configuration)
-                // .AddEventBus(configuration)
+                .AddServices(configuration)
+                .AddEventBus(configuration)
                 .AddSwagger(configuration);
                // .AddCustomHealthCheck(configuration);
 
             var container = new ContainerBuilder();
             container.Populate(services);
+
+            var serviceProvider = services.BuildServiceProvider();
+            serviceProvider.MigrateDbContext<CatalogDbContext>((context, service) =>
+            {
+                Log.Information("Applying migrations ({ApplicationContext})...", CustomProgramExtension.AppName);
+
+                var env = service.GetService<IWebHostEnvironment>();
+                var settings = service.GetService<IOptions<CatalogSettings>>();
+                var logger = service.GetService<ILogger<CatalogContextSeed>>();
+
+                new CatalogContextSeed().SeedAsync(context, env, settings, logger).Wait();
+            }).MigrateDbContext<EventLogDbContext>((_, __) => { });
 
             return new AutofacServiceProvider(container.Build());
         }
