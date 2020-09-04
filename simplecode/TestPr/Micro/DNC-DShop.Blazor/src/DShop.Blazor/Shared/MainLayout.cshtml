@@ -1,0 +1,25 @@
+@using DShop.Blazor.Shared.Components
+@using DShop.Blazor.Shared.Services
+
+@inherits BlazorLayoutComponent
+@inject MainLayoutComponent component
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+        <a href="https://devmentors.io" target="_blank" class="ml-md-auto">DevMentors.io</a>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@functions {
+
+    protected override async Task OnInitAsync()
+        => await component.OnInit();
+}

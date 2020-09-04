@@ -1,0 +1,48 @@
+@page "/orders"
+@using DShop.Blazor.Areas.Orders.Components
+@inject OrdersListComponent component
+
+<h1>Orders</h1>
+
+@if (component.Orders is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Total Amount</th>
+            <th>Currency</th>
+            <th>Status</th>
+            <th>Items count</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var order in component.Orders)
+        {
+            <tr>
+                <td>@order.TotalAmount$</td>
+                <td>@order.Currency</td>
+                <td>
+                    <span class="@(order.Status is "approved"? "badge badge-primary" : order.Status is "canceled" ? "badge badge-warning" : "badge badge-success")">@order.Status</span>
+                </td>
+                <td>@order.ItemsCount</td>
+                <td>
+                    <button type="button" class="btn btn-primary" onclick=@(() => @component.NavigateToOrderDetails(order))>Details</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table> 
+
+}
+
+@functions {
+    protected override async Task OnInitAsync()
+    {
+        await component.OnInit();
+    }
+}

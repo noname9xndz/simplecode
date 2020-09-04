@@ -1,0 +1,37 @@
+﻿@page "/"
+@using DShop.Blazor.Areas.Products.Components
+@inject ProductsListComponent component;
+
+<h1>Products</h1>
+
+@if (component.Products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        @foreach (var product in component.Products)
+         {
+             <div class="col-sm-12 col-md-6 col-lg-4">
+                 <div class="card" style="width: 25rem;">
+                     <img class="card-img-top img-fluid" src="https://www.faceysnursery.com.au/inc/uploads/assets/pawpaw1-300x201-286x180-c-default.jpg" alt="Card image cap">
+                     <div class="card-body">
+                         <h5 class="card-title">@product.Name</h5>
+                         <p class="card-text"><strong>Vendor:</strong> @product.Vendor</p>
+                         <p class="card-text"><strong>Price:</strong> @product.Price$</p>
+                         <p class="card-text"><strong>Quantity:</strong> @product.Quantity</p>
+                         <button type="button" class="btn btn-primary" onclick=@(() => component.AddProductToCart(product))>Add to cart</button>
+                     </div>
+                 </div>
+             </div>
+        }
+    </div>
+}
+
+@functions {
+    protected override async Task OnInitAsync()
+    {
+        await component.OnInit();
+    }
+}
