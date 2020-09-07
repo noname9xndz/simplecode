@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -37,6 +37,7 @@
   <ItemGroup>
     <Folder Include="Events\EventHandling\" />
     <Folder Include="Events\Services\" />
+    <Folder Include="Filters\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Catalog.Infrastructure.Models.Base
+namespace TestMicro.Infrastructure.Models
 {
     public class InternalServerErrorObjectResult : ObjectResult
     {

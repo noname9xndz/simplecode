@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using Catalog.Infrastructure.Exception;
-using Catalog.Infrastructure.Models.Base;
+﻿using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TestMicro.Infrastructure.Models;
 
-namespace Catalog.Infrastructure.Filters
+namespace TestMicro.Infrastructure.Filters
 {
-    public class HttpGlobalExceptionFilter : IExceptionFilter
+    public class HttpGlobalExceptionFilter<T> : IExceptionFilter
     {
         private readonly IWebHostEnvironment env;
-        private readonly ILogger<HttpGlobalExceptionFilter> logger;
+        private readonly ILogger<HttpGlobalExceptionFilter<T>> logger;
 
-        public HttpGlobalExceptionFilter(IWebHostEnvironment env, ILogger<HttpGlobalExceptionFilter> logger)
+        public HttpGlobalExceptionFilter(IWebHostEnvironment env, ILogger<HttpGlobalExceptionFilter<T>> logger)
         {
             this.env = env;
             this.logger = logger;
@@ -30,7 +26,7 @@ namespace Catalog.Infrastructure.Filters
                 context.Exception,
                 context.Exception.Message);
 
-            if (context.Exception.GetType() == typeof(CatalogDomainException))
+            if (context.Exception.GetType() == typeof(T))
             {
                 var problemDetails = new ValidationProblemDetails()
                 {

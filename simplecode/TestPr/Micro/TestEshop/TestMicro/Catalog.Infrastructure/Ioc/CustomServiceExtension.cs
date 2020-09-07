@@ -7,6 +7,7 @@ using System.Text;
 using Autofac;
 using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Events.Services;
+using Catalog.Infrastructure.Exception;
 using Catalog.Infrastructure.Filters;
 using Catalog.Infrastructure.Models.Base;
 using Event.Bus.Services.Azure;
@@ -31,6 +32,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
+using TestMicro.Infrastructure.Filters;
 
 namespace Catalog.Infrastructure.Ioc
 {
@@ -50,7 +52,8 @@ namespace Catalog.Infrastructure.Ioc
         {
             services.AddControllers(options =>
             {
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter<CatalogDomainException>));
+
             }).AddNewtonsoftJson();
 
             //                services.AddCors(options =>

@@ -228,36 +228,11 @@ namespace Catalog.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> UpdateProductAsync([FromBody] CatalogItem productToUpdate)
         {
-            var catalogItem = await _catalogContext.CatalogItems.SingleOrDefaultAsync(i => i.Id == productToUpdate.Id);
-
-            if (catalogItem == null)
+            var updated = await _catalogEventService.UpdateProductAsync(productToUpdate);
+            if(updated == 0)
             {
                 return NotFound(new { Message = $"Item with id {productToUpdate.Id} not found." });
             }
-
-            var oldPrice = catalogItem.Price;
-            var raiseProductPriceChangedEvent = oldPrice != productToUpdate.Price;
-
-            // Update current product
-            catalogItem = productToUpdate;
-            _catalogContext.CatalogItems.Update(catalogItem);
-
-            if (raiseProductPriceChangedEvent) // Save product's data and publish integration event through the Event Bus if price has changed
-            {
-                //Create Integration Event to be published through the Event Bus
-                var priceChangedEvent = new ProductPriceChangedEvent(catalogItem.Id, productToUpdate.Price, oldPrice);
-
-                // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
-                await _catalogEventService.SaveEventAndCatalogContextChangesAsync(priceChangedEvent);
-
-                // Publish through the Event Bus and mark the saved event as published
-                await _catalogEventService.PublishThroughEventBusAsync(priceChangedEvent);
-            }
-            else // Just save the updated product because the Product's Price hasn't changed.
-            {
-                await _catalogContext.SaveChangesAsync();
-            }
-
             return CreatedAtAction(nameof(ItemByIdAsync), new { id = productToUpdate.Id }, null);
         }
 
@@ -267,21 +242,13 @@ namespace Catalog.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult> CreateProductAsync([FromBody] CatalogItem product)
         {
-            var item = new CatalogItem
+            var created = await _catalogEventService.CreateProductAsync(product);
+            if (created == null)
             {
-                CatalogBrandId = product.CatalogBrandId,
-                CatalogTypeId = product.CatalogTypeId,
-                Description = product.Description,
-                Name = product.Name,
-                PictureFileName = product.PictureFileName,
-                Price = product.Price
-            };
+                return new BadRequestObjectResult(product);
+            }
 
-            _catalogContext.CatalogItems.Add(item);
-
-            await _catalogContext.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, null);
+            return CreatedAtAction(nameof(ItemByIdAsync), new { id = created.Id }, null);
         }
 
         //DELETE api/v1/[controller]/id
@@ -291,16 +258,7 @@ namespace Catalog.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult> DeleteProductAsync(int id)
         {
-            var product = _catalogContext.CatalogItems.SingleOrDefault(x => x.Id == id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            _catalogContext.CatalogItems.Remove(product);
-
-            await _catalogContext.SaveChangesAsync();
+            
 
             return NoContent();
         }
