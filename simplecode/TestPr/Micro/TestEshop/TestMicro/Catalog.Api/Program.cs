@@ -23,7 +23,6 @@ namespace Catalog.Api
     {
         public static async Task<int> Main(string[] args)
         {
-            //  CreateHostBuilder(args).Build().Run();
             var configuration = CustomProgramExtension.GetConfiguration();
 
             Log.Logger = CustomProgramExtension.CreateSerilogLogger(configuration);
@@ -32,23 +31,8 @@ namespace Catalog.Api
             {
                 Log.Information("Configuring web host ({ApplicationContext})...", CustomProgramExtension.AppName);
                 var host = CreateHostBuilder(configuration, args);
-
-
-                //host.Build().Run();
-
-              //  host.Build().MigrateDbContext<CatalogDbContext>((context, services) =>
-//                host.MigrateDbContext<CatalogDbContext>((context, services) =>
-//                    {
-//                        var env = services.GetService<IWebHostEnvironment>();
-//                        var settings = services.GetService<IOptions<CatalogSettings>>();
-//                        var logger = services.GetService<ILogger<CatalogContextSeed>>();
-//
-//                        new CatalogContextSeed().SeedAsync(context, env, settings, logger).Wait();
-//                    })
-//                    .MigrateDbContext<EventLogDbContext>((_, __) => { });
-                
                 Log.Information("Starting web host ({ApplicationContext})...", CustomProgramExtension.AppName);
-                host.Build().Run();
+                await host.Build().RunAsync();
 
                 return 0;
             }
@@ -75,28 +59,6 @@ namespace Catalog.Api
                         .UseSerilog();
                 })
             .UseServiceProviderFactory(new AutofacServiceProviderFactory());
-//        private static IWebHost CreateHostBuilder(IConfiguration configuration, string[] args) =>
-//            WebHost.CreateDefaultBuilder(args)
-//               // .UseDefaultServiceProvider(new AutofacServiceProviderFactory())
-//                .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-//                .CaptureStartupErrors(false)
-////                .ConfigureKestrel(options =>
-////                {
-////                    var ports = CustomProgramExtension.GetDefinedPorts(configuration);
-////                    options.Listen(System.Net.IPAddress.Any, ports.httpPort, listenOptions =>
-////                    {
-////                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-////                    });
-////                    options.Listen(System.Net.IPAddress.Any, ports.grpcPort, listenOptions =>
-////                    {
-////                        listenOptions.Protocols = HttpProtocols.Http2;
-////                    });
-////
-////                })
-//                .UseStartup<Startup>()
-//                .UseContentRoot(Directory.GetCurrentDirectory())
-//                //.UseWebRoot("Pics")
-//                .UseSerilog()
-//                .Build();
+
     }
 }

@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Basket.Infrastructure\Basket.Infrastructure.csproj" />
     <ProjectReference Include="..\Event.Bus\Event.Bus.csproj" />
     <ProjectReference Include="..\EventLogEF\EventLogEF.csproj" />
     <ProjectReference Include="..\TestMicro.Infrastructure\TestMicro.Infrastructure.csproj" />

@@ -48,7 +48,7 @@ namespace Catalog.Api
             //{
             //    endpoints.MapControllers();
             //});
-            NativeInjectorBootStrapper.RegisterApplications(app,env, loggerFactory,Configuration);
+            NativeInjectorBootStrapper.RegisterApplication(app,env, loggerFactory,Configuration);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Catalog.Infrastructure.Ioc
                 .AddCustomMVC(configuration)
                 .AddCustomDbContext(configuration)
                 .AddCustomOptions(configuration)
-                .AddServices(configuration)
+                .AddServiceBus(configuration)
                 .AddEventBus(configuration)
                 .AddSwagger(configuration);
                // .AddCustomHealthCheck(configuration);
@@ -51,7 +51,7 @@ namespace Catalog.Infrastructure.Ioc
             return new AutofacServiceProvider(container.Build());
         }
 
-        public static void RegisterApplications(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IConfiguration configuration)
+        public static void RegisterApplication(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             var pathBase = configuration["PATH_BASE"];
 
@@ -104,12 +104,5 @@ namespace Catalog.Infrastructure.Ioc
            // ConfigureEventBus(app); 
         }
 
-
-        private static  void ConfigureEventBus(IApplicationBuilder app)
-        {
-            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-           // eventBus.Subscribe<OrderStatusChangedToAwaitingValidationIntegrationEvent, OrderStatusChangedToAwaitingValidationIntegrationEventHandler>();
-           // eventBus.Subscribe<OrderStatusChangedToPaidIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
-        }
     }
 }

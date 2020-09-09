@@ -51,14 +51,23 @@ namespace Catalog.Infrastructure.Events.Services
                 return 0;
             }
 
-            //            var oldPrice = item.Price;
-            //            var raiseProductPriceChangedEvent = oldPrice != productToUpdate.Price;
+            var oldPrice = product.Price;
+            var raiseProductPriceChangedEvent = oldPrice != productToUpdate.Price;
 
             // Update current product
             product = productToUpdate;
             _catalogContext.CatalogItems.Update(product);
 
             // Save product's data and publish integration event through the Event Bus if price has changed
+
+            if (raiseProductPriceChangedEvent)
+            {
+                var priceChangedEvent = new ProductPriceChangedEvent(product.Id, productToUpdate.Price, oldPrice);
+
+                await SaveEventAndCatalogContextChangesAsync(priceChangedEvent);
+
+                await PublishThroughEventBusAsync(priceChangedEvent);
+            }
 
             var productUpdatedEvent = new ProductUpdatedEvent(product.Id, product.Name, product.Description,
                 product.Price, product.PictureFileName, product.PictureUri, product.CatalogTypeId, product.CatalogBrandId, product.AvailableStock,
@@ -70,19 +79,7 @@ namespace Catalog.Infrastructure.Events.Services
             // Publish through the Event Bus and mark the saved event as published
             await PublishThroughEventBusAsync(productUpdatedEvent);
 
-            //           if (raiseProductPriceChangedEvent) 
-            //            {
-            //               var priceChangedEvent = new ProductPriceChangedEvent(item.Id, productToUpdate.Price, oldPrice);
-            //
-            //                await SaveEventAndCatalogContextChangesAsync(priceChangedEvent);
-            //
-            //                await PublishThroughEventBusAsync(priceChangedEvent);
-            //            }
-            //            else
-            //            {
-            //                await _catalogContext.SaveChangesAsync();
-            //            }
-
+            
             return 1;
         }
 

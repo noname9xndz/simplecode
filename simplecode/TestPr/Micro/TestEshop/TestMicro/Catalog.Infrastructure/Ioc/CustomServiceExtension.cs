@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -8,7 +9,6 @@ using Autofac;
 using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Events.Services;
 using Catalog.Infrastructure.Exception;
-using Catalog.Infrastructure.Filters;
 using Catalog.Infrastructure.Models.Base;
 using Event.Bus.Services.Azure;
 using Event.Bus.Services.Base.Implementation;
@@ -21,13 +21,14 @@ using Event.Bus.Services.Rabbit.Interface;
 using EventLogEF.Context;
 using EventLogEF.Services.Implementation;
 using EventLogEF.Services.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.HealthChecks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -47,6 +48,27 @@ namespace Catalog.Infrastructure.Ioc
 
             return services;
         }
+
+        private static void ConfigureAuthService(IServiceCollection services, IConfiguration configuration)
+        {
+            // prevent from mapping "sub" claim to nameidentifier.
+            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+
+            //var identityUrl = configuration.GetValue<string>("IdentityUrl");
+
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.Authority = identityUrl;
+            //    options.RequireHttpsMetadata = false;
+            //    options.Audience = "basket";
+            //});
+        }
+
 
         public static IServiceCollection AddCustomMVC(this IServiceCollection services, IConfiguration configuration)
         {
@@ -163,6 +185,7 @@ namespace Catalog.Infrastructure.Ioc
             return services;
         }
 
+        [Obsolete]
         public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(options =>
@@ -180,7 +203,7 @@ namespace Catalog.Infrastructure.Ioc
 
         }
 
-        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddServiceBus(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<Func<DbConnection, IEventLogEFService>>(
                 sp => (DbConnection c) => new EventLogEFService(c));
@@ -278,6 +301,12 @@ namespace Catalog.Infrastructure.Ioc
             // services.AddTransient<OrderStatusChangedToPaidIntegrationEventHandler>();
 
             return services;
+        }
+        private static void ConfigureEventBus(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            // eventBus.Subscribe<OrderStatusChangedToAwaitingValidationIntegrationEvent, OrderStatusChangedToAwaitingValidationIntegrationEventHandler>();
+            // eventBus.Subscribe<OrderStatusChangedToPaidIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
         }
     }
 }
