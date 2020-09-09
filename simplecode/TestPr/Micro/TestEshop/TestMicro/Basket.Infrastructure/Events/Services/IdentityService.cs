@@ -19,4 +19,3 @@ namespace Basket.Infrastructure.Events.Services
         }
     }
 }
-}
