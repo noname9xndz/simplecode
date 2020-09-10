@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polly;
+using System;
 
 namespace Catalog.Infrastructure.Extensions
 {
@@ -16,7 +12,6 @@ namespace Catalog.Infrastructure.Extensions
     {
         public static bool IsInKubernetes(this ServiceProvider service)
         {
-
             var cfg = service.GetService<IConfiguration>();
             var orchestratorType = cfg.GetValue<string>("OrchestratorType");
             return orchestratorType?.ToUpper() == "K8S";
@@ -54,7 +49,7 @@ namespace Catalog.Infrastructure.Extensions
                              });
 
                         //if the sql server container is not created on run docker compose this
-                        //migration can't fail for network related exception. The retry options for DbContext only 
+                        //migration can't fail for network related exception. The retry options for DbContext only
                         //apply to transient exceptions
                         // Note that this is NOT applied when running some orchestrators (let the orchestrator to recreate the failing service)
                         retry.Execute(() => InvokeSeeder(seeder, context, services));
@@ -73,7 +68,6 @@ namespace Catalog.Infrastructure.Extensions
             }
 
             return service;
-
         }
 
         private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seeder, TContext context, IServiceProvider services)

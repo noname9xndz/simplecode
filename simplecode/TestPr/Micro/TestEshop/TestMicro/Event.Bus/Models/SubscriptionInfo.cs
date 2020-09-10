@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Event.Bus.Models
 {
@@ -19,6 +17,7 @@ namespace Event.Bus.Models
         {
             return new SubscriptionInfo(true, handlerType);
         }
+
         public static SubscriptionInfo Typed(Type handlerType)
         {
             return new SubscriptionInfo(false, handlerType);

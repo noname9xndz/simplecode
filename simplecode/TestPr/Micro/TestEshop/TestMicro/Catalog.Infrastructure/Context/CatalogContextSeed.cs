@@ -1,22 +1,18 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Catalog.Infrastructure.Models.Base;
+using Catalog.Infrastructure.Models.Entities;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Polly;
+using Polly.Retry;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Catalog.Infrastructure.Extensions;
-using Catalog.Infrastructure.Models;
-using Catalog.Infrastructure.Models.Base;
-using Catalog.Infrastructure.Models.Entities;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Logging;
-using Polly.Retry;
-using Polly;
 using TestMicro.Infrastructure.Extensions;
 
 namespace Catalog.Infrastructure.Context
@@ -121,9 +117,7 @@ namespace Catalog.Infrastructure.Context
             };
         }
 
-
-
-        #endregion
+        #endregion CatalogBrands
 
         #region CatalogType
 
@@ -181,8 +175,7 @@ namespace Catalog.Infrastructure.Context
             };
         }
 
-        #endregion
-
+        #endregion CatalogType
 
         #region CatalogItems
 
@@ -359,7 +352,7 @@ namespace Catalog.Infrastructure.Context
             }
         }
 
-        #endregion
+        #endregion CatalogItems
 
         #region CSV And CreatePolicy
 
@@ -409,9 +402,6 @@ namespace Catalog.Infrastructure.Context
                 );
         }
 
-
-        #endregion
-
-
+        #endregion CSV And CreatePolicy
     }
 }

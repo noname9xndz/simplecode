@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Extensions;
 using Catalog.Infrastructure.Models.Base;
-using Event.Bus.Services.Base.Interface;
 using EventLogEF.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Serilog;
+using System;
 
 namespace Catalog.Infrastructure.Ioc
 {
@@ -31,7 +28,7 @@ namespace Catalog.Infrastructure.Ioc
                 .AddServiceBus(configuration)
                 .AddEventBus(configuration)
                 .AddSwagger(configuration);
-               // .AddCustomHealthCheck(configuration);
+            // .AddCustomHealthCheck(configuration);
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -69,7 +66,7 @@ namespace Catalog.Infrastructure.Ioc
 
             app.UseRouting();
 
-           // app.UseCors("CorsPolicy");
+            // app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
@@ -101,8 +98,7 @@ namespace Catalog.Infrastructure.Ioc
                 //});
             });
 
-           // ConfigureEventBus(app); 
+            // ConfigureEventBus(app);
         }
-
     }
 }

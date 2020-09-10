@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Event.Bus.Services.Interface;
+﻿using Event.Bus.Services.Interface;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Event.Bus.Services.Implementation
 {
-   
     public class AzureServiceBusPersisterConnection : IAzureServiceBusPersisterConnection
     {
         private readonly ILogger<AzureServiceBusPersisterConnection> _logger;
         private readonly ServiceBusConnectionStringBuilder _serviceBusConnectionStringBuilder;
         private ITopicClient _topicClient;
 
-        bool _disposed;
+        private bool _disposed;
 
         public AzureServiceBusPersisterConnection(ServiceBusConnectionStringBuilder serviceBusConnectionStringBuilder,
             ILogger<AzureServiceBusPersisterConnection> logger)

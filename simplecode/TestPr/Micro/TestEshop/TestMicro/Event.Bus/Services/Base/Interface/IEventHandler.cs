@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EventLogEF.Models.Entities;
 using System.Threading.Tasks;
-using EventLogEF.Models.Entities;
 
 namespace Event.Bus.Services.Base.Interface
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catalog.Infrastructure.Context.Configuration;
-using Catalog.Infrastructure.Models;
+﻿using Catalog.Infrastructure.Context.Configuration;
 using Catalog.Infrastructure.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -16,6 +12,7 @@ namespace Catalog.Infrastructure.Context
         public CatalogDbContext(DbContextOptions<CatalogDbContext> options) : base(options)
         {
         }
+
         public DbSet<CatalogItem> CatalogItems { get; set; }
         public DbSet<CatalogBrand> CatalogBrands { get; set; }
         public DbSet<CatalogType> CatalogTypes { get; set; }
@@ -27,7 +24,6 @@ namespace Catalog.Infrastructure.Context
             builder.ApplyConfiguration(new CatalogItemEntityTypeConfiguration());
         }
     }
-
 
     public class CatalogContextDesignFactory : IDesignTimeDbContextFactory<CatalogDbContext>
     {

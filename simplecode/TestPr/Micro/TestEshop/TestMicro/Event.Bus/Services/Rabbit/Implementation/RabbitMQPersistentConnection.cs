@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
+﻿using Event.Bus.Services.Rabbit.Interface;
+using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
-using Event.Bus.Services.Rabbit.Interface;
-using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
+using System;
+using System.IO;
+using System.Net.Sockets;
 
 namespace Event.Bus.Services.Rabbit.Implementation
 {
-   
     public class RabbitMQPersistentConnection : IRabbitMQPersistentConnection
     {
         private readonly IConnectionFactory _connectionFactory;
         private readonly ILogger<RabbitMQPersistentConnection> _logger;
         private readonly int _retryCount;
-        IConnection _connection;
-        bool _disposed;
+        private IConnection _connection;
+        private bool _disposed;
 
-        object sync_root = new object();
+        private object sync_root = new object();
 
         public RabbitMQPersistentConnection(IConnectionFactory connectionFactory, ILogger<RabbitMQPersistentConnection> logger, int retryCount = 5)
         {
@@ -112,7 +110,7 @@ namespace Event.Bus.Services.Rabbit.Implementation
             TryConnect();
         }
 
-        void OnCallbackException(object sender, CallbackExceptionEventArgs e)
+        private void OnCallbackException(object sender, CallbackExceptionEventArgs e)
         {
             if (_disposed) return;
 
@@ -121,7 +119,7 @@ namespace Event.Bus.Services.Rabbit.Implementation
             TryConnect();
         }
 
-        void OnConnectionShutdown(object sender, ShutdownEventArgs reason)
+        private void OnConnectionShutdown(object sender, ShutdownEventArgs reason)
         {
             if (_disposed) return;
 

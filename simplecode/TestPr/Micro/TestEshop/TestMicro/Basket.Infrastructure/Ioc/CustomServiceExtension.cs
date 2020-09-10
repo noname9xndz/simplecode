@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Basket.Infrastructure.Events.Services;
 using Basket.Infrastructure.Exception;
-using Basket.Infrastructure.Filters;
 using Basket.Infrastructure.Models.Base;
 using Event.Bus.Services.Azure;
 using Event.Bus.Services.Base.Implementation;
@@ -12,7 +11,6 @@ using Event.Bus.Services.Rabbit;
 using Event.Bus.Services.Rabbit.Implementation;
 using Event.Bus.Services.Rabbit.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
@@ -23,10 +21,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using TestMicro.Infrastructure.Filters;
 
 namespace Basket.Infrastructure.Ioc
@@ -74,7 +69,6 @@ namespace Basket.Infrastructure.Ioc
             return services;
         }
 
-
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
             var subscriptionClientName = configuration["SubscriptionClientName"];
@@ -91,7 +85,6 @@ namespace Basket.Infrastructure.Ioc
                     return new AzureEventBusServiceBus(serviceBusPersisterConnection, logger,
                         eventBusSubcriptionsManager, subscriptionClientName, iLifetimeScope);
                 });
-
             }
             else
             {
@@ -202,7 +195,6 @@ namespace Basket.Infrastructure.Ioc
             });
 
             return services;
-
         }
 
         public static IServiceCollection AddCustomMVC(this IServiceCollection services, IConfiguration configuration)
@@ -211,9 +203,8 @@ namespace Basket.Infrastructure.Ioc
             {
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter<BasketDomainException>));
                 options.Filters.Add(typeof(ValidateModelStateFilter));
-
             }) // Added for functional tests
-                //.AddApplicationPart(typeof(BasketController).Assembly)
+               //.AddApplicationPart(typeof(BasketController).Assembly)
                 .AddNewtonsoftJson();
 
             //services.AddCors(options =>
@@ -250,7 +241,6 @@ namespace Basket.Infrastructure.Ioc
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
             }).AddJwtBearer(options =>
             {
                 options.Authority = identityUrl;
@@ -270,7 +260,6 @@ namespace Basket.Infrastructure.Ioc
 
         public static IServiceCollection AddRedisService(this IServiceCollection services, IConfiguration configuration)
         {
-          
             //By connecting here we are making sure that our service
             //cannot start until redis is ready. This might slow down startup,
             //but given that there is a delay on resolving the ip address
@@ -293,7 +282,7 @@ namespace Basket.Infrastructure.Ioc
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IRedisBasketService, RedisBasketService>();
-           // services.AddTransient<IIdentityService, IdentityService>();
+            // services.AddTransient<IIdentityService, IdentityService>();
 
             return services;
         }

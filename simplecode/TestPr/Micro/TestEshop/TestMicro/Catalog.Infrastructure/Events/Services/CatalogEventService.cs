@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Catalog.Infrastructure.Context;
+﻿using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Events.Events;
 using Catalog.Infrastructure.Extensions;
-using Catalog.Infrastructure.Ioc;
 using Catalog.Infrastructure.Models.Entities;
 using Event.Bus.Services.Base.Interface;
 using EventLogEF.Models.Entities;
@@ -15,10 +8,13 @@ using EventLogEF.Services.Interface;
 using EventLogEF.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Data.Common;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Catalog.Infrastructure.Events.Services
 {
-
     public class CatalogEventService : ICatalogEventService, IDisposable
     {
         private readonly Func<DbConnection, IEventLogEFService> _eventLogServiceFactory;
@@ -40,7 +36,6 @@ namespace Catalog.Infrastructure.Events.Services
             _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _eventLogService = _eventLogServiceFactory(_catalogContext.Database.GetDbConnection());
         }
-
 
         public async Task<int> UpdateProductAsync(CatalogItem productToUpdate)
         {
@@ -79,7 +74,6 @@ namespace Catalog.Infrastructure.Events.Services
             // Publish through the Event Bus and mark the saved event as published
             await PublishThroughEventBusAsync(productUpdatedEvent);
 
-            
             return 1;
         }
 
@@ -96,7 +90,6 @@ namespace Catalog.Infrastructure.Events.Services
                     PictureFileName = itemProduct.PictureFileName,
                     Price = itemProduct.Price
                 };
-
 
                 await _catalogContext.CatalogItems.AddAsync(product);
 
@@ -117,7 +110,6 @@ namespace Catalog.Infrastructure.Events.Services
             {
                 return null;
             }
-
         }
 
         public async Task<int> DeleteProductAsync(int id)
@@ -144,6 +136,7 @@ namespace Catalog.Infrastructure.Events.Services
         }
 
         //todo resolve result for SaveEventAndCatalogContextChangesAsync : 1 or 0
+
         #region Handle Event
 
         public async Task PublishThroughEventBusAsync(IntegrationEvent evt)
@@ -163,13 +156,12 @@ namespace Catalog.Infrastructure.Events.Services
             }
         }
 
-
         public async Task SaveEventAndCatalogContextChangesAsync(IntegrationEvent evt)
         {
             _logger.LogInformation("----- CatalogIntegrationEventService - Saving changes and integrationEvent: {IntegrationEventId}", evt.Id);
 
             //Use of an EF Core resiliency strategy when using multiple DbContexts within an explicit BeginTransaction():
-            //See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency            
+            //See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
             await ResilientTransaction.New(_catalogContext).ExecuteAsync(async () =>
             {
                 // Achieving atomicity between original catalog database operation and the IntegrationEventLog thanks to a local transaction
@@ -197,6 +189,6 @@ namespace Catalog.Infrastructure.Events.Services
             GC.SuppressFinalize(this);
         }
 
-        #endregion
+        #endregion Handle Event
     }
 }

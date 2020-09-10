@@ -1,8 +1,6 @@
 ﻿using Order.Infrastructure.Domain.Exceptions;
 using Order.Infrastructure.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
@@ -18,12 +16,12 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
         private int _cardTypeId;
         public CardType CardType { get; private set; }
 
-
-        protected PaymentMethod() { }
+        protected PaymentMethod()
+        {
+        }
 
         public PaymentMethod(int cardTypeId, string alias, string cardNumber, string securityNumber, string cardHolderName, DateTime expiration)
         {
-
             _cardNumber = !string.IsNullOrWhiteSpace(cardNumber) ? cardNumber : throw new OrderDomainException(nameof(cardNumber));
             _securityNumber = !string.IsNullOrWhiteSpace(securityNumber) ? securityNumber : throw new OrderDomainException(nameof(securityNumber));
             _cardHolderName = !string.IsNullOrWhiteSpace(cardHolderName) ? cardHolderName : throw new OrderDomainException(nameof(cardHolderName));

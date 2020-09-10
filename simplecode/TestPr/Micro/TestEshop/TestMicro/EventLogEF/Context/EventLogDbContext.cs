@@ -1,6 +1,5 @@
 ﻿using EventLogEF.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EventLogEF.Context
@@ -20,7 +19,7 @@ namespace EventLogEF.Context
             builder.Entity<EventLogEntry>(ConfigureIntegrationEventLogEntry);
         }
 
-        void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<EventLogEntry> builder)
+        private void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<EventLogEntry> builder)
         {
             builder.ToTable("EventLogs");
 
@@ -43,7 +42,6 @@ namespace EventLogEF.Context
 
             builder.Property(e => e.EventTypeName)
                 .IsRequired();
-
         }
     }
 }

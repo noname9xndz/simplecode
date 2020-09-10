@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TestMicro.Infrastructure.Models;
 
@@ -15,6 +13,7 @@ namespace TestMicro.Infrastructure.Middlewares
         private bool _mustFail;
         private readonly FailingOptions _options;
         private readonly ILogger _logger;
+
         public FailingMiddleware(RequestDelegate next, ILogger<FailingMiddleware> logger, FailingOptions options)
         {
             _next = next;
@@ -22,6 +21,7 @@ namespace TestMicro.Infrastructure.Middlewares
             _mustFail = false;
             _logger = logger;
         }
+
         public async Task Invoke(HttpContext context)
         {
             var path = context.Request.Path;

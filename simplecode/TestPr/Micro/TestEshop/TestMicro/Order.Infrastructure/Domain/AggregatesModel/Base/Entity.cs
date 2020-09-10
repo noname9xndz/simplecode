@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.Models
 {
     public abstract class Entity
     {
-        int? _requestedHashCode;
-        int _Id;
+        private int? _requestedHashCode;
+        private int _Id;
+
         public virtual int Id
         {
             get
@@ -75,8 +75,8 @@ namespace Order.Infrastructure.Domain.Models
             }
             else
                 return base.GetHashCode();
-
         }
+
         public static bool operator ==(Entity left, Entity right)
         {
             if (Object.Equals(left, null))

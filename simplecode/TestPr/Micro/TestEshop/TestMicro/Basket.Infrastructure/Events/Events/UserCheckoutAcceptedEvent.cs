@@ -1,8 +1,6 @@
 ﻿using Basket.Infrastructure.Models;
 using EventLogEF.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Basket.Infrastructure.Events.Events
 {
@@ -61,6 +59,5 @@ namespace Basket.Infrastructure.Events.Events
             Basket = basket;
             RequestId = requestId;
         }
-
     }
 }

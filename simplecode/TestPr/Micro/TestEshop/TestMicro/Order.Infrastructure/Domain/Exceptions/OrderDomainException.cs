@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.Exceptions
 {
-    class OrderDomainException : Exception
+    internal class OrderDomainException : Exception
     {
         public OrderDomainException()
         { }

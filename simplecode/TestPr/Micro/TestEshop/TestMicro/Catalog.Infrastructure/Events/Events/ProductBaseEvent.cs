@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventLogEF.Models.Entities;
+﻿using EventLogEF.Models.Entities;
 
 namespace Catalog.Infrastructure.Events.Events
 {
@@ -31,7 +28,6 @@ namespace Catalog.Infrastructure.Events.Events
             MaxStockThreshold = maxStockThreshold;
             OnReorder = onReorder;
         }
-
 
         public int Id { get; set; }
 

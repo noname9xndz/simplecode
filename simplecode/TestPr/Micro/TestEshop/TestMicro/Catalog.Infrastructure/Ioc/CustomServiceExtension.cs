@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Autofac;
+﻿using Autofac;
 using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Events.Services;
 using Catalog.Infrastructure.Exception;
@@ -21,7 +14,6 @@ using Event.Bus.Services.Rabbit.Interface;
 using EventLogEF.Context;
 using EventLogEF.Services.Implementation;
 using EventLogEF.Services.Interface;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,14 +25,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
+using System;
+using System.Data.Common;
+using System.Reflection;
 using TestMicro.Infrastructure.Filters;
 
 namespace Catalog.Infrastructure.Ioc
 {
-
     public static class CustomServiceExtension
     {
-
         public static IServiceCollection AddAppInsight(this IServiceCollection services, IConfiguration configuration)
         {
             //services.AddApplicationInsightsTelemetry(configuration);
@@ -69,13 +62,11 @@ namespace Catalog.Infrastructure.Ioc
             //});
         }
 
-
         public static IServiceCollection AddCustomMVC(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter<CatalogDomainException>));
-
             }).AddNewtonsoftJson();
 
             //                services.AddCors(options =>
@@ -107,11 +98,11 @@ namespace Catalog.Infrastructure.Ioc
 
             //if (!string.IsNullOrEmpty(accountName) && !string.IsNullOrEmpty(accountKey))
             //{
-                //                hcBuilder
-                //                    .AddAzureBlobStorage(
-                //                        $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net",
-                //                        name: "catalog-storage-check",
-                //                        tags: new string[] { "catalogstorage" });
+            //                hcBuilder
+            //                    .AddAzureBlobStorage(
+            //                        $"DefaultEndpointsProtocol=https;AccountName={accountName};AccountKey={accountKey};EndpointSuffix=core.windows.net",
+            //                        name: "catalog-storage-check",
+            //                        tags: new string[] { "catalogstorage" });
             //}
 
             if (configuration.GetValue<bool>("AzureServiceBusEnabled"))
@@ -143,7 +134,7 @@ namespace Catalog.Infrastructure.Ioc
                          sqlOptions =>
                         {
                             sqlOptions.MigrationsAssembly(Assembly.GetAssembly(typeof(CatalogStartUp)).GetName().Name);
-                            //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency 
+                            //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
                             sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                         });
                 });
@@ -200,7 +191,6 @@ namespace Catalog.Infrastructure.Ioc
             });
 
             return services;
-
         }
 
         public static IServiceCollection AddServiceBus(this IServiceCollection services, IConfiguration configuration)
@@ -274,7 +264,6 @@ namespace Catalog.Infrastructure.Ioc
                     return new AzureEventBusServiceBus(serviceBusPersisterConnection, logger,
                         eventBusSubcriptionsManager, subscriptionClientName, iLifetimeScope);
                 });
-
             }
             else
             {
@@ -302,6 +291,7 @@ namespace Catalog.Infrastructure.Ioc
 
             return services;
         }
+
         private static void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
@@ -310,4 +300,3 @@ namespace Catalog.Infrastructure.Ioc
         }
     }
 }
-

@@ -1,14 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Basket.Infrastructure.Models.Base;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Basket.Infrastructure.Ioc
 {
@@ -21,23 +16,22 @@ namespace Basket.Infrastructure.Ioc
                 //.AddAppInsight(configuration)
                 .AddCustomMVC(configuration)
                 .AddSwagger(configuration)
-               // .AddJwtSecurity(configuration)
-              // .AddCustomHealthCheck(configuration)
+                // .AddJwtSecurity(configuration)
+                // .AddCustomHealthCheck(configuration)
                 .AddCustomOptions(configuration)
                 .AddRedisService(configuration)
                 .AddServiceBus(configuration)
                 .AddEventBus(configuration)
                 .AddCustomService()
                 .AddOptions();
-                
 
             var container = new ContainerBuilder();
             container.Populate(services);
-            
+
             return new AutofacServiceProvider(container.Build());
         }
 
-        public static void RegisterApplication(IApplicationBuilder app,IConfiguration configuration)
+        public static void RegisterApplication(IApplicationBuilder app, IConfiguration configuration)
         {
             CustomApplicationExtension.AddCustomSwagger(app, configuration);
 
@@ -50,6 +44,5 @@ namespace Basket.Infrastructure.Ioc
 
             CustomApplicationExtension.AddEndpoints(app).AddEventBus();
         }
-
     }
 }

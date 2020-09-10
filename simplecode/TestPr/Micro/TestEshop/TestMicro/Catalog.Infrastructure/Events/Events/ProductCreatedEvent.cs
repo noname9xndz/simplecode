@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catalog.Infrastructure.Models.Entities;
-using EventLogEF.Models.Entities;
-
-namespace Catalog.Infrastructure.Events.Events
+﻿namespace Catalog.Infrastructure.Events.Events
 {
     public class ProductCreatedEvent : ProductBaseEvent
     {

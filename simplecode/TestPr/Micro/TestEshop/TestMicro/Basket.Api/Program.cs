@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 using Basket.Infrastructure.Extensions;
 using Basket.Infrastructure.Models.Base;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using TestMicro.Infrastructure.Extensions;
 
 namespace Basket.Api
@@ -37,7 +33,6 @@ namespace Basket.Api
                 await host.Build().RunAsync();
 
                 return 0;
-
             }
             catch (Exception ex)
             {

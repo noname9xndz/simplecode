@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventLogEF.Utilities
 {
     public class ResilientTransaction
     {
         private DbContext _context;
+
         private ResilientTransaction(DbContext context) =>
             _context = context ?? throw new ArgumentNullException(nameof(context));
 

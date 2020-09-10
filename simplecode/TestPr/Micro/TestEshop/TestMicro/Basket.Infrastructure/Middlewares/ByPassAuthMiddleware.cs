@@ -11,11 +11,13 @@ namespace Basket.Infrastructure.Middlewares
     {
         private readonly RequestDelegate _next;
         private string _currentUserId;
+
         public ByPassAuthMiddleware(RequestDelegate next)
         {
             _next = next;
             _currentUserId = null;
         }
+
         public async Task Invoke(HttpContext context)
         {
             var path = context.Request.Path;
@@ -30,7 +32,6 @@ namespace Basket.Infrastructure.Middlewares
                 context.Response.ContentType = "text/string";
                 await context.Response.WriteAsync($"User set to {_currentUserId}");
             }
-
             else if (path == "/noauth/reset")
             {
                 _currentUserId = null;
@@ -51,7 +52,6 @@ namespace Basket.Infrastructure.Middlewares
                         currentUserId = header.Substring("Email ".Length);
                     }
                 }
-
 
                 if (!string.IsNullOrEmpty(currentUserId))
                 {

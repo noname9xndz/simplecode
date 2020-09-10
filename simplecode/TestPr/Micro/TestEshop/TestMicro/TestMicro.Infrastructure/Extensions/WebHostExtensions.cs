@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Polly;
+using System;
 using TestMicro.Infrastructure.Filters;
 using TestMicro.Infrastructure.Models;
 
 namespace TestMicro.Infrastructure.Extensions
-{ 
-
+{
     public static class WebHostExtensions
     {
         public static IWebHostBuilder UseFailing(this IWebHostBuilder builder, Action<FailingOptions> options)
@@ -26,13 +16,14 @@ namespace TestMicro.Infrastructure.Extensions
             });
             return builder;
         }
+
         //        public static bool IsInKubernetes(this IWebHost webHost)
         //        {
         //            var cfg = webHost.Services.GetService<IConfiguration>();
         //            var orchestratorType = cfg.GetValue<string>("OrchestratorType");
         //            return orchestratorType?.ToUpper() == "K8S";
         //        }
-        //        
+        //
         //
         //        public static IWebHost MigrateDbContext<TContext>(this IWebHost webHost, Action<TContext, IServiceProvider> seeder) where TContext : DbContext
         //        {
@@ -65,7 +56,7 @@ namespace TestMicro.Infrastructure.Extensions
         //                                });
         //
         //                        //if the sql server container is not created on run docker compose this
-        //                        //migration can't fail for network related exception. The retry options for DbContext only 
+        //                        //migration can't fail for network related exception. The retry options for DbContext only
         //                        //apply to transient exceptions
         //                        // Note that this is NOT applied when running some orchestrators (let the orchestrator to recreate the failing service)
         //                        retry.Execute(() => InvokeSeeder(seeder, context, services));

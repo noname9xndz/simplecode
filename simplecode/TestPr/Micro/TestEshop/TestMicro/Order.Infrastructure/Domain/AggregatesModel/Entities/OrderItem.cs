@@ -1,17 +1,15 @@
 ﻿using Order.Infrastructure.Domain.Exceptions;
 using Order.Infrastructure.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
-    public class OrderItem: Entity
+    public class OrderItem : Entity
     {
         // DDD Patterns comment
         // Using private fields, allowed since EF Core 1.1, is a much better encapsulation
         // aligned with DDD Aggregates and Domain Entities (Instead of properties and property collections)
         private string _productName;
+
         private string _pictureUrl;
         private decimal _unitPrice;
         private decimal _discount;
@@ -19,7 +17,9 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 
         public int ProductId { get; private set; }
 
-        protected OrderItem() { }
+        protected OrderItem()
+        {
+        }
 
         public OrderItem(int productId, string productName, decimal unitPrice, decimal discount, string PictureUrl, int units = 1)
         {

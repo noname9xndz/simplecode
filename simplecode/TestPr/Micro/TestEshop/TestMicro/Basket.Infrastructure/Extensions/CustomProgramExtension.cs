@@ -1,10 +1,7 @@
 ﻿using Basket.Infrastructure.Models.Base;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Basket.Infrastructure.Extensions
 {
@@ -12,6 +9,7 @@ namespace Basket.Infrastructure.Extensions
     {
         public static readonly string Namespace = typeof(BasketProgram).Namespace;
         public static readonly string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
+
         public static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         {
             var seqServerUrl = configuration["Serilog:SeqServerUrl"];

@@ -1,21 +1,14 @@
+using Autofac.Extensions.DependencyInjection;
+using Catalog.Infrastructure.Extensions;
+using Catalog.Infrastructure.Models.Base;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Autofac.Extensions.DependencyInjection;
-using Catalog.Infrastructure.Context;
-using Catalog.Infrastructure.Extensions;
-using Catalog.Infrastructure.Ioc;
-using Catalog.Infrastructure.Models.Base;
-using EventLogEF.Context;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Serilog;
-using TestMicro.Infrastructure.Extensions;
 
 namespace Catalog.Api
 {
@@ -59,6 +52,5 @@ namespace Catalog.Api
                         .UseSerilog();
                 })
             .UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
     }
 }

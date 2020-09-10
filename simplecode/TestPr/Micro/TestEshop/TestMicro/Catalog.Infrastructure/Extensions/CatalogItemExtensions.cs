@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catalog.Infrastructure.Models.Entities;
+﻿using Catalog.Infrastructure.Models.Entities;
 
 namespace Catalog.Infrastructure.Extensions
 {

@@ -1,7 +1,6 @@
 ﻿using Order.Infrastructure.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
@@ -17,7 +16,6 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 
         protected Buyer()
         {
-
             _paymentMethods = new List<PaymentMethod>();
         }
 

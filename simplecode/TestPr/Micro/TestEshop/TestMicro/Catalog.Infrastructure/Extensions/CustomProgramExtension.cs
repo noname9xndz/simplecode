@@ -1,7 +1,7 @@
-﻿using System.IO;
-using Catalog.Infrastructure.Models.Base;
+﻿using Catalog.Infrastructure.Models.Base;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using System.IO;
 
 namespace Catalog.Infrastructure.Extensions
 {
@@ -9,6 +9,7 @@ namespace Catalog.Infrastructure.Extensions
     {
         public static readonly string Namespace = typeof(CatalogProgram).Namespace;
         public static readonly string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
+
         public static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         {
             var seqServerUrl = configuration["Serilog:SeqServerUrl"];

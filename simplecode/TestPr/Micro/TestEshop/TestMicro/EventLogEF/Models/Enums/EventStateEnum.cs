@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventLogEF.Models.Enums
+﻿namespace EventLogEF.Models.Enums
 {
     public enum EventStateEnum
     {

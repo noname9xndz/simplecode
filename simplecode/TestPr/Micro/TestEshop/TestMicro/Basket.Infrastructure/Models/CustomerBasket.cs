@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Basket.Infrastructure.Models
 {
@@ -12,7 +10,6 @@ namespace Basket.Infrastructure.Models
 
         public CustomerBasket()
         {
-
         }
 
         public CustomerBasket(string customerId)

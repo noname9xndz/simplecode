@@ -5,8 +5,6 @@ using Event.Bus.Services.Base.Interface;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Basket.Infrastructure.Events.EventHandling

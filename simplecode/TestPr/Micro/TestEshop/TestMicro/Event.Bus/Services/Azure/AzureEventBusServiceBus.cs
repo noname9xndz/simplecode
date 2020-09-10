@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Event.Bus.Services.Base.Implementation;
 using Event.Bus.Services.Base.Interface;
 using Event.Bus.Services.Interface;
@@ -11,10 +7,12 @@ using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Event.Bus.Services.Azure
 {
-
     public class AzureEventBusServiceBus : IEventBus
     {
         private readonly IAzureServiceBusPersisterConnection _serviceBusPersisterConnection;

@@ -1,13 +1,8 @@
 ﻿using Basket.Infrastructure.Middlewares;
-using Basket.Infrastructure.Models.Base;
 using Event.Bus.Services.Base.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Basket.Infrastructure.Ioc
 {
@@ -60,7 +55,7 @@ namespace Basket.Infrastructure.Ioc
         {
             app.UseEndpoints(endpoints =>
             {
-              //  endpoints.MapGrpcService<BasketService>();
+                //  endpoints.MapGrpcService<BasketService>();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
                 //endpoints.MapGet("/_proto/", async ctx =>
@@ -89,7 +84,6 @@ namespace Basket.Infrastructure.Ioc
             });
 
             return app;
-
         }
     }
 }

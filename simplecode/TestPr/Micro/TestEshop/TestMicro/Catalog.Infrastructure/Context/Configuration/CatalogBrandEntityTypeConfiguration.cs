@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catalog.Infrastructure.Models;
-using Catalog.Infrastructure.Models.Entities;
+﻿using Catalog.Infrastructure.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Catalog.Infrastructure.Context.Configuration
 {
-    class CatalogBrandEntityTypeConfiguration
+    internal class CatalogBrandEntityTypeConfiguration
         : IEntityTypeConfiguration<CatalogBrand>
     {
         public void Configure(EntityTypeBuilder<CatalogBrand> builder)

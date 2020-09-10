@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Catalog.Infrastructure.Context;
-using Catalog.Infrastructure.Events.Events;
+﻿using Catalog.Infrastructure.Context;
 using Catalog.Infrastructure.Events.Services;
 using Catalog.Infrastructure.Extensions;
 using Catalog.Infrastructure.Models.Base;
 using Catalog.Infrastructure.Models.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using TestMicro.Infrastructure.Models;
 
 namespace Catalog.Api.Controllers
@@ -229,7 +227,7 @@ namespace Catalog.Api.Controllers
         public async Task<ActionResult> UpdateProductAsync([FromBody] CatalogItem productToUpdate)
         {
             var updated = await _catalogEventService.UpdateProductAsync(productToUpdate);
-            if(updated == 0)
+            if (updated == 0)
             {
                 return NotFound(new { Message = $"Item with id {productToUpdate.Id} not found." });
             }
@@ -258,8 +256,6 @@ namespace Catalog.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult> DeleteProductAsync(int id)
         {
-            
-
             return NoContent();
         }
 

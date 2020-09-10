@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EventLogEF.Models.Enums;
+using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using EventLogEF.Models.Enums;
-using Newtonsoft.Json;
 
 namespace EventLogEF.Models.Entities
 {
-   
     public class EventLogEntry
     {
-        private EventLogEntry() { }
+        private EventLogEntry()
+        {
+        }
+
         public EventLogEntry(IntegrationEvent @event, Guid transactionId)
         {
             EventId = @event.Id;
@@ -22,12 +22,16 @@ namespace EventLogEF.Models.Entities
             TimesSent = 0;
             TransactionId = transactionId.ToString();
         }
+
         public Guid EventId { get; private set; }
         public string EventTypeName { get; private set; }
+
         [NotMapped]
         public string EventTypeShortName => EventTypeName.Split('.')?.Last();
+
         [NotMapped]
         public IntegrationEvent IntegrationEvent { get; private set; }
+
         public EventStateEnum State { get; set; }
         public int TimesSent { get; set; }
         public DateTime CreationTime { get; private set; }

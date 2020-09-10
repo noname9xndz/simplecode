@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Basket.Infrastructure.Exception
+﻿namespace Basket.Infrastructure.Exception
 {
     public class BasketDomainException : System.Exception
     {

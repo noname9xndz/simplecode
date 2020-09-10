@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
@@ -24,8 +23,6 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 
         private string _description;
 
-
-
         // Draft orders have this set to true. Currently we don't check anywhere the draft status of an Order, but we could do it if needed
         private bool _isDraft;
 
@@ -34,6 +31,7 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
         // so OrderItems cannot be added from "outside the AggregateRoot" directly to the collection,
         // but only through the method OrderAggrergateRoot.AddOrderItem() which includes behaviour.
         private readonly List<OrderItem> _orderItems;
+
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
         private int? _paymentMethodId;
@@ -60,7 +58,7 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
             _orderDate = DateTime.UtcNow;
             Address = address;
 
-            // Add the OrderStarterDomainEvent to the domain events collection 
+            // Add the OrderStarterDomainEvent to the domain events collection
             // to be raised/dispatched when comitting changes into the Database [ After DbContext.SaveChanges() ]
             //AddOrderStartedDomainEvent(userId, userName, cardTypeId, cardNumber,
             //                           cardSecurityNumber, cardHolderName, cardExpiration);
@@ -68,8 +66,8 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 
         // DDD Patterns comment
         // This Order AggregateRoot's method "AddOrderitem()" should be the only way to add Items to the Order,
-        // so any behavior (discounts, etc.) and validations are controlled by the AggregateRoot 
-        // in order to maintain consistency between the whole Aggregate. 
+        // so any behavior (discounts, etc.) and validations are controlled by the AggregateRoot
+        // in order to maintain consistency between the whole Aggregate.
         public void AddOrderItem(int productId, string productName, decimal unitPrice, decimal discount, string pictureUrl, int units = 1)
         {
             var existingOrderForProduct = _orderItems.Where(o => o.ProductId == productId)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Event.Bus.Extensions;
 using Event.Bus.Services.Base.Implementation;
 using Event.Bus.Services.Base.Interface;
@@ -11,19 +7,22 @@ using EventLogEF.Models.Entities;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Polly;
+using Polly.Retry;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
-using Polly;
-using Polly.Retry;
+using System;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Event.Bus.Services.Rabbit
 {
-  
     public class RabbitMQEventBusServiceBus : IEventBus, IDisposable
     {
-        const string BROKER_NAME = "eshop_event_bus";
-        const string AUTOFAC_SCOPE_NAME = "eshop_event_bus";
+        private const string BROKER_NAME = "eshop_event_bus";
+        private const string AUTOFAC_SCOPE_NAME = "eshop_event_bus";
 
         private readonly IRabbitMQPersistentConnection _persistentConnection;
         private readonly ILogger<RabbitMQEventBusServiceBus> _logger;
@@ -223,7 +222,7 @@ namespace Event.Bus.Services.Rabbit
             }
 
             // Even on exception we take the message off the queue.
-            // in a REAL WORLD app this should be handled with a Dead Letter Exchange (DLX). 
+            // in a REAL WORLD app this should be handled with a Dead Letter Exchange (DLX).
             // For more information see: https://www.rabbitmq.com/dlx.html
             _consumerChannel.BasicAck(eventArgs.DeliveryTag, multiple: false);
         }

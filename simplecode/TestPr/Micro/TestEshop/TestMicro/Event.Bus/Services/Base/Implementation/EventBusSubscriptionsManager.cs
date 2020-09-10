@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Event.Bus.Models;
+﻿using Event.Bus.Models;
 using Event.Bus.Services.Base.Interface;
 using EventLogEF.Models.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Event.Bus.Services.Base.Implementation
 {
-
     public class EventBusSubscriptionsManager : IEventBusSubscriptionsManager
     {
         private readonly Dictionary<string, List<SubscriptionInfo>> _handlers;
@@ -23,6 +21,7 @@ namespace Event.Bus.Services.Base.Implementation
         }
 
         public bool IsEmpty => !_handlers.Keys.Any();
+
         public void Clear() => _handlers.Clear();
 
         public void AddDynamicSubscription<TH>(string eventName)
@@ -68,14 +67,12 @@ namespace Event.Bus.Services.Base.Implementation
             }
         }
 
-
         public void RemoveDynamicSubscription<TH>(string eventName)
             where TH : IDynamicEventHandler
         {
             var handlerToRemove = FindDynamicSubscriptionToRemove<TH>(eventName);
             DoRemoveHandler(eventName, handlerToRemove);
         }
-
 
         public void RemoveSubscription<T, TH>()
             where TH : IEventHandler<T>
@@ -85,7 +82,6 @@ namespace Event.Bus.Services.Base.Implementation
             var eventName = GetEventKey<T>();
             DoRemoveHandler(eventName, handlerToRemove);
         }
-
 
         private void DoRemoveHandler(string eventName, SubscriptionInfo subsToRemove)
         {
@@ -102,7 +98,6 @@ namespace Event.Bus.Services.Base.Implementation
                     }
                     RaiseOnEventRemoved(eventName);
                 }
-
             }
         }
 
@@ -111,6 +106,7 @@ namespace Event.Bus.Services.Base.Implementation
             var key = GetEventKey<T>();
             return GetHandlersForEvent(key);
         }
+
         public IEnumerable<SubscriptionInfo> GetHandlersForEvent(string eventName) => _handlers[eventName];
 
         private void RaiseOnEventRemoved(string eventName)
@@ -119,13 +115,11 @@ namespace Event.Bus.Services.Base.Implementation
             handler?.Invoke(this, eventName);
         }
 
-
         private SubscriptionInfo FindDynamicSubscriptionToRemove<TH>(string eventName)
             where TH : IDynamicEventHandler
         {
             return DoFindSubscriptionToRemove(eventName, typeof(TH));
         }
-
 
         private SubscriptionInfo FindSubscriptionToRemove<T, TH>()
              where T : IntegrationEvent
@@ -143,7 +137,6 @@ namespace Event.Bus.Services.Base.Implementation
             }
 
             return _handlers[eventName].SingleOrDefault(s => s.HandlerType == handlerType);
-
         }
 
         public bool HasSubscriptionsForEvent<T>() where T : IntegrationEvent
@@ -151,6 +144,7 @@ namespace Event.Bus.Services.Base.Implementation
             var key = GetEventKey<T>();
             return HasSubscriptionsForEvent(key);
         }
+
         public bool HasSubscriptionsForEvent(string eventName) => _handlers.ContainsKey(eventName);
 
         public Type GetEventTypeByName(string eventName) => _eventTypes.SingleOrDefault(t => t.Name == eventName);

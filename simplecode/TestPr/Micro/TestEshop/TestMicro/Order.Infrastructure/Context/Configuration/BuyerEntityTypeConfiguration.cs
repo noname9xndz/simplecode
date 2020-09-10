@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Order.Infrastructure.Domain.AggregatesModel.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Context.Configuration
 {
-    public class BuyerEntityTypeConfiguration: IEntityTypeConfiguration<Buyer>
+    public class BuyerEntityTypeConfiguration : IEntityTypeConfiguration<Buyer>
     {
         public void Configure(EntityTypeBuilder<Buyer> buyerConfiguration)
         {

@@ -1,7 +1,6 @@
 ﻿using Order.Infrastructure.Domain.AggregatesModel.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
@@ -13,7 +12,9 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
         public String Country { get; private set; }
         public String ZipCode { get; private set; }
 
-        public Address() { }
+        public Address()
+        {
+        }
 
         public Address(string street, string city, string state, string country, string zipcode)
         {

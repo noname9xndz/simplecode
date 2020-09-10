@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Basket.Infrastructure.Events.Events;
+﻿using Basket.Infrastructure.Events.Events;
 using Basket.Infrastructure.Events.Services;
 using Basket.Infrastructure.Extensions;
 using Basket.Infrastructure.Models;
 using Event.Bus.Services.Base.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Basket.Api.Controllers
 {
@@ -59,7 +56,7 @@ namespace Basket.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CheckoutAsync([FromBody] BasketCheckout basketCheckout, [FromHeader(Name = "x-requestid")] string requestId)
         {
-           var userId = _identityService.GetUserIdentity();
+            var userId = _identityService.GetUserIdentity();
 
             basketCheckout.RequestId = (Guid.TryParse(requestId, out Guid guid) && guid != Guid.Empty) ?
                 guid : basketCheckout.RequestId;
