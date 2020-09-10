@@ -8,13 +8,14 @@ using System;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
+using Order.Infrastructure.Domain.Services.Base;
 
 namespace Order.Infrastructure.Context
 {
     // Add-Migration InitialCreate -Context OrderDbContext
     // Add-Migration InitialCreate -Context EventLogDbContext
     // Update-Database -Context OrderDbContext
-    public class OrderDbContext : DbContext//, IUnitOfWork
+    public class OrderDbContext : DbContext, IUnitOfWork
     {
         public const string DEFAULT_SCHEMA = "order";
 

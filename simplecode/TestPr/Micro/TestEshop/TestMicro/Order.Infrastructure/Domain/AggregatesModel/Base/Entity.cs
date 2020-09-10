@@ -1,8 +1,8 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using MediatR;
 
-namespace Order.Infrastructure.Domain.Models
+namespace Order.Infrastructure.Domain.AggregatesModel.Base
 {
     public abstract class Entity
     {

@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Order.Infrastructure.Models.Base;
 
 namespace Order.Api
 {
-    public class Program
+    public class Program : OrderProgram
     {
         public static void Main(string[] args)
         {

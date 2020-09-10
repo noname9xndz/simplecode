@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Order.Infrastructure.Context;
-using Order.Infrastructure.Domain.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Order.Infrastructure.Domain.AggregatesModel.Base;
 
 namespace Order.Infrastructure.Extensions
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Order.Infrastructure.Models
+namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
     public class ClientRequest
     {

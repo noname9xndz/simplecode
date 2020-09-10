@@ -1,6 +1,8 @@
-﻿using Order.Infrastructure.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Order.Infrastructure.Domain.AggregatesModel.Base;
+using Order.Infrastructure.Domain.Events;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {
@@ -25,27 +27,27 @@ namespace Order.Infrastructure.Domain.AggregatesModel.Entities
             Name = !string.IsNullOrWhiteSpace(name) ? name : throw new ArgumentNullException(nameof(name));
         }
 
-        //public PaymentMethod VerifyOrAddPaymentMethod(
-        //    int cardTypeId, string alias, string cardNumber,
-        //    string securityNumber, string cardHolderName, DateTime expiration, int orderId)
-        //{
-        //    var existingPayment = _paymentMethods
-        //        .SingleOrDefault(p => p.IsEqualTo(cardTypeId, cardNumber, expiration));
+        public PaymentMethod VerifyOrAddPaymentMethod(
+            int cardTypeId, string alias, string cardNumber,
+            string securityNumber, string cardHolderName, DateTime expiration, int orderId)
+        {
+            var existingPayment = _paymentMethods
+                .SingleOrDefault(p => p.IsEqualTo(cardTypeId, cardNumber, expiration));
 
-        //    if (existingPayment != null)
-        //    {
-        //        AddDomainEvent(new BuyerAndPaymentMethodVerifiedDomainEvent(this, existingPayment, orderId));
+            if (existingPayment != null)
+            {
+                AddDomainEvent(new BuyerAndPaymentMethodVerifiedDomainEvent(this, existingPayment, orderId));
 
-        //        return existingPayment;
-        //    }
+                return existingPayment;
+            }
 
-        //    var payment = new PaymentMethod(cardTypeId, alias, cardNumber, securityNumber, cardHolderName, expiration);
+            var payment = new PaymentMethod(cardTypeId, alias, cardNumber, securityNumber, cardHolderName, expiration);
 
-        //    _paymentMethods.Add(payment);
+            _paymentMethods.Add(payment);
 
-        //    AddDomainEvent(new BuyerAndPaymentMethodVerifiedDomainEvent(this, payment, orderId));
+            AddDomainEvent(new BuyerAndPaymentMethodVerifiedDomainEvent(this, payment, orderId));
 
-        //    return payment;
-        //}
+            return payment;
+        }
     }
 }

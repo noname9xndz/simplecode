@@ -1,6 +1,6 @@
 ﻿using Order.Infrastructure.Domain.Exceptions;
-using Order.Infrastructure.Domain.Models;
 using System;
+using Order.Infrastructure.Domain.AggregatesModel.Base;
 
 namespace Order.Infrastructure.Domain.AggregatesModel.Entities
 {

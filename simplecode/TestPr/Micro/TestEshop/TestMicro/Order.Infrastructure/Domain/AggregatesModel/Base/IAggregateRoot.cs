@@ -1,4 +1,4 @@
-﻿namespace Order.Infrastructure.Domain.Models
+﻿namespace Order.Infrastructure.Domain.AggregatesModel.Base
 {
     public interface IAggregateRoot
     {

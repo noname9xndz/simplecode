@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Order.Infrastructure.Models.Base;
 
 namespace Order.Api
 {
-    public class Startup
+    public class Startup  : OrderStartUp
     {
         public Startup(IConfiguration configuration)
         {
