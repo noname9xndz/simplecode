@@ -8,6 +8,7 @@
     <Folder Include="Domain\Events\" />
     <Folder Include="Domain\Services\" />
     <Folder Include="Ioc\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,11 +16,21 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Event.Bus\Event.Bus.csproj" />
+    <ProjectReference Include="..\EventLogEF\EventLogEF.csproj" />
+    <ProjectReference Include="..\TestMicro.Infrastructure\TestMicro.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

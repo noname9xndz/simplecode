@@ -12,7 +12,7 @@ namespace Order.Infrastructure.Context
         public OrderDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<OrderDbContext>()
-                .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.OrderingDb;Integrated Security=true");
+                .UseSqlServer("Server=DESKTOP-QRPI657;Database=TestMicro.OrderDb;User Id = sa;Password = noname9xnd;MultipleActiveResultSets=true");
 
             return new OrderDbContext(optionsBuilder.Options, new NoMediator());
         }

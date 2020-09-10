@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Order.Infrastructure.Context
 {
+    // Add-Migration InitialCreate -Context OrderDbContext
+    // Add-Migration InitialCreate -Context EventLogDbContext
+    // Update-Database -Context OrderDbContext
     public class OrderDbContext : DbContext//, IUnitOfWork
     {
         public const string DEFAULT_SCHEMA = "order";
@@ -31,7 +34,7 @@ namespace Order.Infrastructure.Context
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
-            System.Diagnostics.Debug.WriteLine("OrderingContext::ctor ->" + this.GetHashCode());
+            System.Diagnostics.Debug.WriteLine("OrderDbContext::ctor ->" + this.GetHashCode());
         }
 
         public DbSet<Domain.AggregatesModel.Entities.Order> Orders { get; set; }

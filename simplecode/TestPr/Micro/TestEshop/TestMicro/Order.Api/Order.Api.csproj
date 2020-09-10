@@ -8,5 +8,16 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Event.Bus\Event.Bus.csproj" />
+    <ProjectReference Include="..\EventLogEF\EventLogEF.csproj" />
+    <ProjectReference Include="..\Order.Infrastructure\Order.Infrastructure.csproj" />
+    <ProjectReference Include="..\TestMicro.Infrastructure\TestMicro.Infrastructure.csproj" />
+  </ItemGroup>
+
 
 </Project>
