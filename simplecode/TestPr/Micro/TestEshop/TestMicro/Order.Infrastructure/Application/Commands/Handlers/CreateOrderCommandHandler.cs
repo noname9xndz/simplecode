@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Order.Infrastructure.Application.Commands.Commands;
 using Order.Infrastructure.Application.IntegrationEvents.Events;
+using Order.Infrastructure.Application.IntegrationEvents.Events.DomainResolve;
 using Order.Infrastructure.Domain.Services.Interface;
 
 namespace Order.Infrastructure.Application.Commands.Handlers

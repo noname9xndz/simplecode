@@ -14,43 +14,48 @@ using Order.Infrastructure.Domain.Services.Interface;
 using Order.Infrastructure.Models;
 using Order.Infrastructure.Models.Event;
 
-namespace Order.Infrastructure.Application.DomainEventHandlers.OrderGracePeriodConfirmed
+namespace Order.Infrastructure.Application.DomainEventHandlers.OrderPaid
 {
-    public class OrderStatusChangedToAwaitingValidationDomainEventHandler
-                   : INotificationHandler<OrderStatusChangedToAwaitingValidationDomainEvent>
+    public class OrderStatusChangedToPaidDomainEventHandler
+                   : INotificationHandler<OrderStatusChangedToPaidDomainEvent>
     {
         private readonly IOrderService _orderService;
         private readonly ILoggerFactory _logger;
         private readonly IBuyerService _buyerService;
         private readonly IOrderEventService _orderEventService;
 
-        public OrderStatusChangedToAwaitingValidationDomainEventHandler(
+
+        public OrderStatusChangedToPaidDomainEventHandler(
             IOrderService orderService, ILoggerFactory logger,
             IBuyerService buyerService,
-            IOrderEventService orderEventService)
+            IOrderEventService orderEventService
+            )
         {
             _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _buyerService = buyerService;
-            _orderEventService = orderEventService;
+            _buyerService = buyerService ?? throw new ArgumentNullException(nameof(buyerService));
+            _orderEventService = orderEventService ?? throw new ArgumentNullException(nameof(orderEventService));
         }
 
-        public async Task Handle(OrderStatusChangedToAwaitingValidationDomainEvent orderStatusChangedToAwaitingValidationDomainEvent, CancellationToken cancellationToken)
+        public async Task Handle(OrderStatusChangedToPaidDomainEvent orderStatusChangedToPaidDomainEvent, CancellationToken cancellationToken)
         {
-            _logger.CreateLogger<OrderStatusChangedToAwaitingValidationDomainEvent>()
+            _logger.CreateLogger<OrderStatusChangedToPaidDomainEventHandler>()
                 .LogTrace("Order with Id: {OrderId} has been successfully updated to status {Status} ({Id})",
-                    orderStatusChangedToAwaitingValidationDomainEvent.OrderId, nameof(OrderStatus.AwaitingValidation), OrderStatus.AwaitingValidation.Id);
+                    orderStatusChangedToPaidDomainEvent.OrderId, nameof(OrderStatus.Paid), OrderStatus.Paid.Id);
 
-            var order = await _orderService.GetAsync(orderStatusChangedToAwaitingValidationDomainEvent.OrderId);
-
+            var order = await _orderService.GetAsync(orderStatusChangedToPaidDomainEvent.OrderId);
             var buyer = await _buyerService.FindByIdAsync(order.GetBuyerId.Value.ToString());
 
-            var orderStockList = orderStatusChangedToAwaitingValidationDomainEvent.OrderItems
+            var orderStockList = orderStatusChangedToPaidDomainEvent.OrderItems
                 .Select(orderItem => new OrderStockItem(orderItem.ProductId, orderItem.GetUnits()));
 
-            var orderStatusChangedToAwaitingValidationIntegrationEvent = new OrderStatusChangedToAwaitingValidationIntegrationEvent(
-                order.Id, order.OrderStatus.Name, buyer.Name, orderStockList);
-            await _orderEventService.AddAndSaveEventAsync(orderStatusChangedToAwaitingValidationIntegrationEvent);
+            var orderStatusChangedToPaidIntegrationEvent = new OrderStatusChangedToPaidIntegrationEvent(
+                orderStatusChangedToPaidDomainEvent.OrderId,
+                order.OrderStatus.Name,
+                buyer.Name,
+                orderStockList);
+
+            await _orderEventService.AddAndSaveEventAsync(orderStatusChangedToPaidIntegrationEvent);
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventLogEF.Models.Entities;
+﻿using EventLogEF.Models.Entities;
 
-namespace Order.Infrastructure.Application.IntegrationEvents.Events
+namespace Order.Infrastructure.Application.IntegrationEvents.Events.DomainResolve
 {
     public class OrderStatusChangedToSubmittedIntegrationEvent : IntegrationEvent
     {

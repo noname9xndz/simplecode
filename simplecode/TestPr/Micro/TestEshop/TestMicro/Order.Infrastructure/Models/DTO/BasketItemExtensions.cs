@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Order.Infrastructure.Models.DTO;
+using Order.Infrastructure.Models.Event;
 
-namespace Order.Infrastructure.Models
+namespace Order.Infrastructure.Models.DTO
 {
     public static class BasketItemExtensions
     {

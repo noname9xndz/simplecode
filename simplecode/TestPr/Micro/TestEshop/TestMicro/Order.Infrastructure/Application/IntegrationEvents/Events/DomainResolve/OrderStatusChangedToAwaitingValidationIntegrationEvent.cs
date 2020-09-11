@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using EventLogEF.Models.Entities;
 using Order.Infrastructure.Models;
+using Order.Infrastructure.Models.Event;
 
-namespace Order.Infrastructure.Application.IntegrationEvents.Events
+namespace Order.Infrastructure.Application.IntegrationEvents.Events.DomainResolve
 {
     public class OrderStatusChangedToAwaitingValidationIntegrationEvent : IntegrationEvent
     {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Order.Infrastructure.Application.IntegrationEvents.Events;
+using Order.Infrastructure.Application.IntegrationEvents.Events.DomainResolve;
 using Order.Infrastructure.Domain.AggregatesModel.Entities;
 using Order.Infrastructure.Domain.Events;
 using Order.Infrastructure.Domain.Services.Interface;

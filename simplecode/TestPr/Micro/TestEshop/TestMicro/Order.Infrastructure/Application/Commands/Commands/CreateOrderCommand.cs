@@ -6,6 +6,7 @@ using System.Text;
 using MediatR;
 using Order.Infrastructure.Models;
 using Order.Infrastructure.Models.DTO;
+using Order.Infrastructure.Models.Event;
 
 namespace Order.Infrastructure.Application.Commands.Commands
 {
