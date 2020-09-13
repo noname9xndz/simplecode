@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+
+  seq:
+    image: datalust/seq:latest
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2017-latest 
+
+  basketdata:
+    image: redis:alpine
+
+  nosqldata:
+    image: mongo
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  basket-api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Basket.Api\Dockerfile
+    depends_on:
+      - basketdata
+      - rabbitmq
+
+  catalog-api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Catalog.Api\Dockerfile
+    depends_on:
+      - sqldata
+      - rabbitmq
+
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: Order.Api\Dockerfile
+    depends_on:
+      - sqldata
+      - rabbitmq
