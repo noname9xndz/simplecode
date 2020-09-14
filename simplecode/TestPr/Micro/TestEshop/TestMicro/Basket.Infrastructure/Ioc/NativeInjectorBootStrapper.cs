@@ -33,16 +33,15 @@ namespace Basket.Infrastructure.Ioc
 
         public static void RegisterApplication(IApplicationBuilder app, IConfiguration configuration)
         {
-            CustomApplicationExtension.AddCustomSwagger(app, configuration);
-
-            app.UseRouting();
-            app.UseCors("CorsPolicy");
-
-            CustomApplicationExtension.AddAuthCustom(app, configuration);
-
-            app.UseStaticFiles();
-
-            CustomApplicationExtension.AddEndpoints(app).AddEventBus();
+            CustomApplicationExtension
+                .AddCustomSwagger(app, configuration)
+                .UseRouting()
+                //.UseCors("CorsPolicy")
+                .AddAuthCustom(configuration)
+                .UseStaticFiles()
+                .AddEndpoints()
+                .AddEventBus()
+                ;
         }
     }
 }

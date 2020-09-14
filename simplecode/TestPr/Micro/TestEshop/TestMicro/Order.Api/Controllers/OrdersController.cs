@@ -75,7 +75,8 @@ namespace Order.Api.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> ShipOrderAsync([FromBody] ShipOrderCommand command, [FromHeader(Name = "x-requestid")] string requestId)
+        public async Task<IActionResult> ShipOrderAsync([FromBody] ShipOrderCommand command, 
+            [FromHeader(Name = "x-requestid")] string requestId)
         {
             bool commandResult = false;
 
