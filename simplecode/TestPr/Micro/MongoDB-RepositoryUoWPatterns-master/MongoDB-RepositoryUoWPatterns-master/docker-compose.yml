@@ -1,0 +1,27 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  generic-repo-uow:
+      image: "generic-repo-uow"
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      ports:
+          - "5005:5005"
+      links:
+          - mongo
+      depends_on:
+          - mongo
+      environment: 
+          MONGOCONNECTION: "mongodb://mongo:27017"
+          DATABASENAME: "Products"
+          ASPNETCORE_ENVIRONMENT: "Development"
+          ASPNETCORE_URLS: http://+:5005
+  mongo:
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - "27017:27017"
+  
+  

@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Customer\Validations\" />
+    <Folder Include="Commands\Product\Validations\" />
+    <Folder Include="Events\Customer\" />
+    <Folder Include="Events\Product\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

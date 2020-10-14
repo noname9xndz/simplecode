@@ -9,6 +9,7 @@
     <Folder Include="Core\Domain\" />
     <Folder Include="Core\Mediator\" />
     <Folder Include="Core\Messaging\" />
+    <Folder Include="Core\Specification\" />
     <Folder Include="Core\Specification\Validation\" />
     <Folder Include="Core\Utilities\" />
     <Folder Include="Properties\" />

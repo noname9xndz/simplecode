@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Evil Pilaf</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>0.2.1</Version>
+    <PackageTags>DynamoDB;AWS;DynamoDBv2;Unit of Work;UoW;Transaction</PackageTags>
+    <RepositoryURL>https://github.com/evilpilaf/DynamoDBUnitOfWork</RepositoryURL>
+    <Description>Allow controlling transactions in AWS DynamoDB operations via the Unit of Work pattern.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.74" />
+  </ItemGroup>
+
+</Project>

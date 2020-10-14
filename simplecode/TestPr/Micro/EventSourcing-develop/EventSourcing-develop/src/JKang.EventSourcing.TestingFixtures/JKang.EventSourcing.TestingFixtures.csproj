@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JKang.EventSourcing.Abstractions\JKang.EventSourcing.Abstractions.csproj" />
+    <ProjectReference Include="..\JKang.EventSourcing.Persistence.Caching\JKang.EventSourcing.Persistence.Caching.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.5</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Brad Irby</Authors>
+    <Company>Brad Irby</Company>
+    <Description>.NET Standard package that implements the Repository pattern for DynamoDB tables</Description>
+    <PackageProjectUrl>https://github.com/bradirby/DynamoDB.Repository</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bradirby/DynamoDB.Repository</RepositoryUrl>
+    <PackageTags>DynamoDB, Repository, C#</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.24.4" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,66 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  branches:
+    include:
+    - master
+
+variables:
+  solution: 'DynamoDBTransactionUtilities.sln'
+  buildConfiguration: 'Release'
+
+jobs:
+  - job: Build_and_Test
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: DotNetCoreInstaller@0
+      displayName: 'Install dotnet core'
+      inputs:
+        version: '2.2.100'
+
+    - task: NuGetToolInstaller@0
+      displayName: 'Nuget Tool installer'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+        command: 'restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build'
+      inputs:
+        command: 'build'
+        arguments: '--configuration $(buildConfiguration)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Test'
+      inputs:
+        command: 'test'
+        arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --no-build'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+      inputs:
+        command: 'publish'
+        projects: 'src/**/*.csproj'
+        publishWebProjects: False
+        arguments: '--output $(Build.ArtifactStagingDirectory) --configuration $(buildConfiguration) --no-build'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Package'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+      inputs:
+        command: 'pack'
+        arguments: '--output $(Build.ArtifactStagingDirectory) --configuration $(buildConfiguration) --no-build'
+
+    - task: PublishBuildArtifacts@1
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
